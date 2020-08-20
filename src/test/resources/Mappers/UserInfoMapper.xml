@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.soomin.user.persistence.mapper.SimpleMapper">
+    <parameterMap id="userInfo" type="me.soomin.user.domain.vo.UserInfoVO">
+        <parameter property="userNo" javaType="java.lang.Long"/>
+        <parameter property="userId" javaType="java.lang.String"/>
+        <parameter property="userName" javaType="java.lang.String"/>
+        <parameter property="userPassword" javaType="java.lang.String"/>
+        <parameter property="regdate" javaType="java.util.Date"/>
+    </parameterMap>
+
+    <resultMap id="userInfo" type="me.soomin.user.domain.vo.UserInfoVO">
+        <result column="USERNO" property="userNo" javaType="java.lang.Long" />
+        <result column="USERID" property="userId" javaType="java.lang.String" />
+        <result column="USERNAME" property="userName" javaType="java.lang.String" />
+        <result column="USERPASSWORD" property="userPassword" javaType="java.lang.String" />
+        <result column="REGDATE" property="regdate" javaType="java.util.Date" />
+    </resultMap>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="userInfo">
+        SELECT * FROM USERINFO WHERE USERNO = #{userNo}
+    </select>
+
+    <select id="getNow" resultType="java.lang.String" >
+        SELECT SYSDATE FROM DUAL
+    </select>
+
+
+
+    <select id="getList" resultMap="userInfo" >
+        <![CDATA[
+        SELECT * FROM USERINFO WHERE USERNO > 0
+        ]]>
+    </select>
+
+    <insert id="insert" parameterMap="userInfo" >
+        INSERT INTO USERINFO (USERNO, USERID, USERNAME, USERPASSWORD) VALUES (SEQ_USERINFO.nextval,#{userId},#{userName},#{userPassword})
+    </insert>
+
+    <insert id="insertSelectKey" parameterMap="userInfo">
+        <selectKey  keyColumn="USERNO" keyProperty="userNo" order="BEFORE" resultType="java.lang.Long">
+            SELECT SEQ_USERINFO.nextval FROM DUAL
+        </selectKey>
+        INSERT INTO USERINFO (USERNO, USERID, USERNAME, USERPASSWORD) VALUES (#{userNo},#{userId},#{userName},#{userPassword})
+    </insert>
+
+    <update id="update" parameterMap="userInfo" >
+        UPDATE USERINFO SET USERID = #{userId}, USERNAME = #{userName}, USERPASSWORD = #{userPassword}, UPDATEDATE  = SYSDATE WHERE USERNO = #{userNo}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM USERINFO WHERE USERNO = #{userNo}
+    </delete>
+
+</mapper>
