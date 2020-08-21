@@ -16,6 +16,13 @@
     </properties>
 
     <dependencies>
+        <!-- Validation -->
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.7.Final</version>
+        </dependency>
         <!--db logging-->
         <dependency>
             <groupId>org.bgee.log4jdbc-log4j2</groupId>
@@ -26,12 +33,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>5.2.8.RELEASE</version>
+            <version>5.0.7.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>5.2.8.RELEASE</version>
+            <version>5.0.7.RELEASE</version>
         </dependency>
         <!--HikariDBCP-->
         <dependency>
@@ -153,6 +160,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.2</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

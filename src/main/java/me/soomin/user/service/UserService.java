@@ -13,6 +13,8 @@ public interface UserService {
 
     public UserInfoVO readUserInfo(Long userNo);
 
+    public UserInfoVO readUserId(String userId);
+
     public List<UserInfoVO> getUserInfoList();
 
     public boolean registerUserInfo(UserRegisterRequest userRegisterRequest);

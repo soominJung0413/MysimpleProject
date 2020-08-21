@@ -27,6 +27,11 @@ public class UserServiceImpl implements UserService{
         return simpleMapper.get(userNo);
     }
 
+    @Override
+    public UserInfoVO readUserId(String userId) {
+        return simpleMapper.getFromId(userId);
+    }
+
 
     @Override
     public List<UserInfoVO> getUserInfoList() {

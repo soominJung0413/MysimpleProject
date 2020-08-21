@@ -14,6 +14,8 @@ public class UserInfoVO {
 
     private String userName;
 
+    private String userEmail;
+
     private String userPassword;
 
     private Date regdate;

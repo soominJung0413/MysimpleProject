@@ -12,6 +12,7 @@
     <parameterMap id="registerRequest" type="me.soomin.user.domain.dtd.UserRegisterRequest">
         <parameter property="userNo" javaType="java.lang.Long"/>
         <parameter property="userId" javaType="java.lang.String"/>
+        <parameter property="userEmail" javaType="java.lang.String"/>
         <parameter property="userName" javaType="java.lang.String"/>
         <parameter property="userPassword" javaType="java.lang.String"/>
     </parameterMap>
@@ -26,12 +27,17 @@
         <result column="USERNO" property="userNo" javaType="java.lang.Long" />
         <result column="USERID" property="userId" javaType="java.lang.String" />
         <result column="USERNAME" property="userName" javaType="java.lang.String" />
+        <result column="USEREMAIL" property="userEmail" javaType="java.lang.String" />
         <result column="USERPASSWORD" property="userPassword" javaType="java.lang.String" />
         <result column="REGDATE" property="regdate" javaType="java.util.Date" />
     </resultMap>
 
     <select id="get" parameterType="java.lang.Long" resultMap="userInfo">
         SELECT * FROM USERINFO WHERE USERNO = #{userNo} AND USERNO > 0
+    </select>
+
+    <select id="getFromId" parameterType="java.lang.String" resultMap="userInfo">
+        SELECT * FROM USERINFO WHERE USERID = #{arg0} AND USERNO > 0
     </select>
 
     <select id="getNow" resultType="java.lang.String" >
@@ -47,14 +53,14 @@
     </select>
 
     <insert id="insert" parameterMap="registerRequest" >
-        INSERT INTO USERINFO (USERNO, USERID, USERNAME, USERPASSWORD) VALUES (SEQ_USERINFO.nextval,#{userId},#{userName},#{userPassword})
+        INSERT INTO USERINFO (USERNO, USERID, USERNAME, USERPASSWORD, USEREMAIL) VALUES (SEQ_USERINFO.nextval,#{userId},#{userName},#{userPassword},#{userEmail})
     </insert>
 
     <insert id="insertSelectKey" parameterMap="registerRequest">
         <selectKey  keyColumn="USERNO" keyProperty="userNo" order="BEFORE" resultType="java.lang.Long">
             SELECT SEQ_USERINFO.nextval FROM DUAL
         </selectKey>
-        INSERT INTO USERINFO (USERNO, USERID, USERNAME, USERPASSWORD) VALUES (#{userNo},#{userId},#{userName},#{userPassword})
+        INSERT INTO USERINFO (USERNO, USERID, USERNAME, USERPASSWORD,USEREMAIL) VALUES (#{userNo},#{userId},#{userName},#{userPassword},#{userEmail})
     </insert>
 
     <update id="update" parameterMap="modifyRequest">

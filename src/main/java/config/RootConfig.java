@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.ClassPathResource;
 
 @Configuration
@@ -21,10 +21,12 @@ public class RootConfig {
 
 
     @Bean
-    public ResourceBundleMessageSource messageSource(){
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+    public ReloadableResourceBundleMessageSource messageSource(){
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setBasenames("message.label");
+        messageSource.setBasenames("classpath:/message/main","classpath:/message/register"
+
+        );
         return messageSource;
     }
 

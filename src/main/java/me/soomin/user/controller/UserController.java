@@ -4,19 +4,23 @@ import lombok.extern.log4j.Log4j;
 import me.soomin.user.domain.dtd.UserModifyRequest;
 import me.soomin.user.domain.dtd.UserRegisterRequest;
 import me.soomin.user.domain.dtd.UserRemoveRequest;
+import me.soomin.user.domain.validation.UserRegisterRequestValidator;
 import me.soomin.user.domain.vo.UserInfoVO;
 import me.soomin.user.service.UserService;
-import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
-@RequestMapping(value = "/user/*")
+@RequestMapping(value = "/user")
 @Log4j
 public class UserController {
 
@@ -24,20 +28,32 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/create")
-    public void provideRegisterForm(@ModelAttribute UserRegisterRequest userRegisterRequest){
+    public String provideRegisterForm(@ModelAttribute UserRegisterRequest userRegisterRequest){
         log.info("유저 서비스 Get 요청 커멘드 객체는 빈 상태 여야함 :::::\n"+userRegisterRequest);
+        return "user/create/form";
     }
 
     @PostMapping(value = "/create")
-    public String registerUser(@ModelAttribute UserRegisterRequest userRegisterRequest , Errors errors){
+    public String registerUser(@ModelAttribute @Valid UserRegisterRequest userRegisterRequest,Errors errors,HttpServletRequest request){
         log.info("요청된 유저 정보 ::::::::::::::::::::::"+userRegisterRequest);
+        log.info("작성된 폼에대한 에러 확인 :::::::\n"+errors.getAllErrors());
+        log.info(" 파라메터 정보 ::"+ Arrays.toString(request.getParameterMap().keySet().toArray()));
 
-        return "redirect:/main";
+
+        if(errors.hasErrors()){
+            return "user/create/form";
+        }
+
+        UserInfoVO userInfoVO = userService.readUserId(userRegisterRequest.getUserId());
+        log.info(userInfoVO);
+
+        return "redirect:/";
     }
 
     @GetMapping(value = "/modify")
     public void provideModifyForm(@ModelAttribute UserModifyRequest userModifyRequest){
         log.info("유저 정보 수정 서비스 GET 커맨드 객체 상태 ::::::\n"+ userModifyRequest);
+
     }
 
     @PostMapping(value = "/modify")
@@ -68,5 +84,12 @@ public class UserController {
 
 
         return "redirect:/main";
+    }
+
+
+
+    @InitBinder
+    protected void InitBinder(WebDataBinder dataBinder) {
+        dataBinder.setValidator(new UserRegisterRequestValidator());
     }
 }

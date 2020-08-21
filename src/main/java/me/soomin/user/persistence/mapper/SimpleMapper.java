@@ -16,6 +16,8 @@ public interface SimpleMapper {
 
     public UserInfoVO get(Long userNo);
 
+    public UserInfoVO getFromId(String userId);
+
     public int insert(UserRegisterRequest userRegisterRequest);
 
     public Long insertSelectKey(UserRegisterRequest userRegisterRequest);

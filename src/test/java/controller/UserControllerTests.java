@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -38,12 +37,12 @@ public class UserControllerTests {
         );
     }
 
-//    @Test
+    @Test
     public void testRegisterSevice() throws Exception {
         log.info(
-                mockMvc.perform(MockMvcRequestBuilders.post("/user/create/form")
-                        .param("userId","컨트롤러 테스트 아이디")
-                        .param("userName","컨트롤러 테스트 이름")
+                mockMvc.perform(MockMvcRequestBuilders.post("/user/create")
+                        .param("userId","   ")
+                        .param("userName","   ")
                         .param("userPassword","컨트롤러 테스트 암호")
                 ).andReturn().getModelAndView().getViewName()
         );
@@ -75,7 +74,7 @@ public class UserControllerTests {
         );
     }
 
-    @Test
+//    @Test
     public void testRemoveUserInfo() throws Exception {
         log.info(
                 mockMvc.perform(MockMvcRequestBuilders.post("/user/delete/form/1")
