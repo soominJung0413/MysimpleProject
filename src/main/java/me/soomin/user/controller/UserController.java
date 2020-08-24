@@ -12,12 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -34,18 +33,27 @@ public class UserController {
     }
 
     @PostMapping(value = "/create")
-    public String registerUser(@ModelAttribute @Valid UserRegisterRequest userRegisterRequest,Errors errors,HttpServletRequest request){
+    public String registerUser(@ModelAttribute @Valid UserRegisterRequest userRegisterRequest, Errors errors, RedirectAttributes redirectAttributes){
         log.info("요청된 유저 정보 ::::::::::::::::::::::"+userRegisterRequest);
         log.info("작성된 폼에대한 에러 확인 :::::::\n"+errors.getAllErrors());
-        log.info(" 파라메터 정보 ::"+ Arrays.toString(request.getParameterMap().keySet().toArray()));
+//        log.info(" 파라메터 정보 ::"+ Arrays.toString(request.getParameterMap().keySet().toArray()));
 
+
+        UserInfoVO userInfoVO = userService.readUserId(userRegisterRequest.getUserId());
+        log.info(userInfoVO);
+        if(userInfoVO != null) {
+            if (userInfoVO.getUserId().equals(userRegisterRequest.getUserId())) {
+                errors.reject("existsAccount");
+            }
+        }
 
         if(errors.hasErrors()){
             return "user/create/form";
         }
 
-        UserInfoVO userInfoVO = userService.readUserId(userRegisterRequest.getUserId());
-        log.info(userInfoVO);
+        Long registerUserNo = userService.registerUserInfoGetKey(userRegisterRequest);
+
+        redirectAttributes.addFlashAttribute("Success","register"+registerUserNo);
 
         return "redirect:/";
     }

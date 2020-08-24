@@ -7,7 +7,10 @@ import me.soomin.user.persistence.mapper.SimpleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -39,6 +42,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional(rollbackFor = {SQLException.class})
     public boolean registerUserInfo(UserRegisterRequest userRegisterRequest) {
         int inserCount = simpleMapper.insert(userRegisterRequest);
 

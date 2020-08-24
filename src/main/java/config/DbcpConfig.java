@@ -10,7 +10,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement(proxyTargetClass = true)
 public class DbcpConfig {
     @Value("${dbcp.driver}")
     private String driver;
@@ -50,7 +50,8 @@ public class DbcpConfig {
 
     @Bean
     public PlatformTransactionManager platformTransactionManager(HikariDataSource hikariDataSource){
-        PlatformTransactionManager platformTransactionManager = new DataSourceTransactionManager(hikariDataSource);
+        DataSourceTransactionManager
+                platformTransactionManager = new DataSourceTransactionManager(hikariDataSource);
         return platformTransactionManager;
     }
 

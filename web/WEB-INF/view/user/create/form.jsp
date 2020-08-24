@@ -46,8 +46,8 @@
                 <form:errors path="userName"  element="small" id="nameHelp" cssClass="form-text text-muted" />
             </div>
             <div class="form-group">
-                <label for="userPassword"><spring:message code="register.email" /></label>
-                <form:password path="userEmail" placeholder="Input your Email" cssClass="form-control"  id="userEmail" required="true"/>
+                <label for="userEmail"><spring:message code="register.email" /></label>
+                <form:input path="userEmail" placeholder="Input your Email" cssClass="form-control"  id="userEmail" required="true"/>
                 <form:errors path="userEmail"  element="small" id="EmailHelp" cssClass="form-text text-muted" />
             </div>
             <div class="form-group">
