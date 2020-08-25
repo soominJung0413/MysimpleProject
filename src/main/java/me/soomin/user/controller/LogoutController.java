@@ -22,7 +22,7 @@ public class LogoutController {
             return "redirect:/";
         }else{
             httpSession.invalidate();
-            redirectAttributes.addFlashAttribute("Success","logoutFailed"+userId);
+            redirectAttributes.addFlashAttribute("Success","Failed"+userInfoVO.getUserId());
             return "redirect:/";
         }
     }

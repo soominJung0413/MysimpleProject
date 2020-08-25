@@ -50,9 +50,7 @@ public class DbcpConfig {
 
     @Bean
     public PlatformTransactionManager platformTransactionManager(HikariDataSource hikariDataSource){
-        DataSourceTransactionManager
-                platformTransactionManager = new DataSourceTransactionManager(hikariDataSource);
-        return platformTransactionManager;
+        return new DataSourceTransactionManager(hikariDataSource);
     }
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Arrays;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/create")
-    public String registerUser(@ModelAttribute @Valid UserRegisterRequest userRegisterRequest, Errors errors, RedirectAttributes redirectAttributes){
+    public String registerUser(@Valid @ModelAttribute UserRegisterRequest userRegisterRequest, Errors errors, RedirectAttributes redirectAttributes){
         log.info("요청된 유저 정보 ::::::::::::::::::::::"+userRegisterRequest);
         log.info("작성된 폼에대한 에러 확인 :::::::\n"+errors.getAllErrors());
 //        log.info(" 파라메터 정보 ::"+ Arrays.toString(request.getParameterMap().keySet().toArray()));
@@ -98,6 +99,6 @@ public class UserController {
 
     @InitBinder
     protected void InitBinder(WebDataBinder dataBinder) {
-        dataBinder.setValidator(new UserRegisterRequestValidator());
+        dataBinder.addValidators(new UserRegisterRequestValidator());
     }
 }

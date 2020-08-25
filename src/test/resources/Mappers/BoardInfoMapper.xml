@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.soomin.board.persistence.mappers.BoardMapper">
+    <resultMap id="boardVO" type="me.soomin.board.domain.BoardInfoVO">
+        <result column="BOARDNO" property="boardNo" javaType="java.lang.Long" />
+        <result column="BOARDTITLE" property="boardTitle" javaType="java.lang.String" />
+        <result column="BOARDCATEGORY" property="boardCategory" javaType="java.lang.String" />
+        <result column="BOARDCONTENT" property="boardContent" javaType="java.lang.String" />
+        <result column="BOARDREGDATE" property="regdate" javaType="java.util.Date" />
+        <result column="BOARDUPDATEDATE" property="updateDate" javaType="java.util.Date" />
+        <result column="USERID" property="userId" javaType="java.lang.String" />
+    </resultMap>
+
+    <select id="getList" resultMap="boardVO" >
+        <![CDATA[
+        SELECT * FROM BOARDINFO WHERE BOARDNO > 0
+        ]]>
+    </select>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="boardVO">
+        SELECT * FROM BOARDINFO WHERE USERID = #{arg0}
+    </select>
+
+    <select id="getFromId" parameterType="java.lang.String" resultMap="boardVO">
+        SELECT * FROM BOARDINFO WHERE USERID = #{arg0}
+    </select>
+
+
+
+
+</mapper>

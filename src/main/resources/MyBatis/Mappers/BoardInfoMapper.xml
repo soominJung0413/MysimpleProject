@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.soomin.board.persistence.mappers.BoardMapper">
+    <resultMap id="boardVO" type="me.soomin.board.domain.BoardInfoVO">
+        <result column="BOARDNO" property="boardNo" javaType="java.lang.Long" />
+        <result column="BOARDTITLE" property="boardTitle" javaType="java.lang.String" />
+        <result column="BOARDCATEGORY" property="boardCategory" javaType="java.lang.String" />
+        <result column="BOARDCONTENT" property="boardContent" javaType="java.lang.String" />
+        <result column="BOARDREGDATE" property="regdate" javaType="java.util.Date" />
+        <result column="BOARDUPDATEDATE" property="updateDate" javaType="java.util.Date" />
+        <result column="USERID" property="userId" javaType="java.lang.String" />
+    </resultMap>
+
+    <parameterMap id="boardRegisterRequest" type="me.soomin.board.domain.dtd.BoardRegisterRequest">
+        <parameter property="boardNo" javaType="java.lang.Long" />
+        <parameter property="boardTitle" javaType="java.lang.String" />
+        <parameter property="boardCategory" javaType="java.lang.String"/>
+        <parameter property="boardContent" javaType="java.lang.String"/>
+        <parameter property="userId" javaType="java.lang.String"/>
+    </parameterMap>
+
+    <parameterMap id="boardModifyRequest" type="me.soomin.board.domain.dtd.BoardModifyRequest">
+        <parameter property="boardNo" javaType="java.lang.Long"/>
+        <parameter property="boardTitle" javaType="java.lang.String"/>
+        <parameter property="boardCategory" javaType="java.lang.String"/>
+        <parameter property="boardContent" javaType="java.lang.String"/>
+        <parameter property="userId" javaType="java.lang.String"/>
+    </parameterMap>
+
+    <select id="getList" resultMap="boardVO" >
+        <![CDATA[
+        SELECT * FROM BOARDINFO WHERE BOARDNO > 0
+        ]]>
+    </select>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="boardVO">
+        SELECT * FROM BOARDINFO WHERE USERID = #{arg0}
+    </select>
+
+    <select id="getFromId" parameterType="java.lang.String" resultMap="boardVO">
+        SELECT * FROM BOARDINFO WHERE USERID = #{arg0}
+    </select>
+
+    <insert id="insert" parameterMap="boardRegisterRequest" >
+        INSERT INTO BOARDINFO(BOARDNO,BOARDTITLE,BOARDCONTENT,USERID)
+        VALUES ( SEQ_BOARDINFO.nextval,#{boardTitle},#{boardContent},#{userId})
+    </insert>
+
+    <insert id="insertCategory" parameterMap="boardRegisterRequest" >
+        INSERT INTO BOARDINFO(BOARDNO,BOARDTITLE,BOARDCATEGORY,BOARDCONTENT,USERID)
+        VALUES ( SEQ_BOARDINFO.nextval,#{boardTitle},#{boardCategory},#{boardContent},#{userId})
+    </insert>
+    
+    <insert id="insertSelectKey" parameterMap="boardRegisterRequest" >
+        <selectKey keyColumn="BOARDNO" keyProperty="boardNo" order="BEFORE" resultType="java.lang.Long">
+            SELECT SEQ_BOARDINFO.nextval FROM DUAL
+        </selectKey>
+        INSERT INTO BOARDINFO(BOARDNO,BOARDTITLE,BOARDCONTENT,USERID)
+        VALUES (#{boardNo},#{boardTitle},#{boardContent},#{userId})
+    </insert>
+
+    <insert id="insertSelectKeyCategory" parameterMap="boardRegisterRequest">
+        <selectKey keyColumn="BOARDNO" keyProperty="boardNo" order="BEFORE" resultType="java.lang.Long">
+            SELECT SEQ_BOARDINFO.nextval FROM DUAL
+        </selectKey>
+        INSERT INTO BOARDINFO(BOARDNO,BOARDTITLE,BOARDCATEGORY,BOARDCONTENT,USERID)
+        VALUES (#{boardNo},#{boardTitle},#{boardCategory},#{boardContent},#{userId})
+    </insert>
+
+    <update id="update" parameterMap="boardModifyRequest" >
+        UPDATE BOARDINFO SET BOARDTITLE = #{boardTitle} , BOARDCATEGORY = #{boardCategory} , BOARDCONTENT = #{boardContent} , BOARDUPDATEDATE = SYSDATE
+            WHERE BOARDNO = #{boardNo}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM BOARDINFO WHERE BOARDNO = #{arg0}
+    </delete>
+
+</mapper>

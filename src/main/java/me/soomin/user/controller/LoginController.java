@@ -17,6 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Arrays;
 
 @Controller
 @Component
@@ -46,9 +47,9 @@ public class LoginController {
                                    RedirectAttributes redirectAttributes){
         log.info("로그인 폼 포스트 요청 받음 ::::"+loginRequest);
         log.info("세션 아이디 저장 동의여부 ::::"+loginRequest.isAgreeIdSave());
+        log.info("에러정보 ::::"+errors.getAllErrors());
 
         loginService.login(loginRequest,errors,request,response,cookie);
-
 
         if(errors.hasErrors()){
             return "/user/login/form";
@@ -59,8 +60,5 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @InitBinder
-    protected void initBinder(WebDataBinder dataBinder) {
-        dataBinder.setValidator(new UserLoginRequestValidator());
-    }
+
 }

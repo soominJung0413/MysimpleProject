@@ -10,7 +10,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal"><spring:message code="navar.me" /></h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><spring:message code="navar.me" /> <a href="#top"></a> </h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="${context}/"><spring:message code="navar.main" /></a>
             <c:if test="${empty sessionScope.userInfo}">
@@ -19,8 +19,10 @@
             <c:if test="${not empty sessionScope.userInfo}">
                 <a class="p-2 text-dark" href="${context}/${sessionScope.userInfo.userId}/logout"><spring:message code="navar.logout" /></a>
             </c:if>
-            <a class="p-2 text-dark" href="#">default</a>
-            <a class="p-2 text-dark" href="#">Pricing</a>
+            <a class="p-2 text-dark" href="${context}/board"><spring:message code="navar.board" /></a>
+            <c:if test="${not empty sessionScope.userInfo}">
+            <a class="p-2 text-dark" href="${context}/${sessionScope.userInfo.userId}/menu"><spring:message code="navar.mymenu" /></a>
+            </c:if>
         </nav>
         <a class="btn btn-sm btn-outline-dark" href="${context}/user/create"><spring:message code="navar.register" /></a>
 

@@ -2,10 +2,14 @@ package config;
 
 import config.mvc.SpringMvcConfig;
 import me.soomin.user.controller.UserController;
+import me.soomin.user.interceptor.LoginPageInterceptor;
 import me.soomin.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.validation.Validator;
 import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
@@ -13,6 +17,11 @@ import org.springframework.web.servlet.config.annotation.*;
 @ComponentScan(basePackageClasses = {UserController.class, UserService.class})
 @Import({SpringMvcConfig.class})
 public class WebMvcConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginPageInterceptor()).addPathPatterns("/login/**");
+    }
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -29,6 +38,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("main");
     }
-
 
 }

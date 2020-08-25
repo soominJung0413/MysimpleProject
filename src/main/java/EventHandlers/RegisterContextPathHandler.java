@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.Validator;
 import org.springframework.web.context.WebApplicationContext;
 
 
@@ -12,11 +13,15 @@ import org.springframework.web.context.WebApplicationContext;
 public class RegisterContextPathHandler {
 
     @Autowired
+    private Validator validator;
+
+    @Autowired
     private WebApplicationContext webApplicationContext;
 
     @EventListener
     public void handlerRefreshApplicationContext(ContextRefreshedEvent refreshedEvent){
         webApplicationContext.getServletContext().setInitParameter("context",webApplicationContext.getServletContext().getContextPath());
+        System.out.println(validator.getClass());
         System.out.println("!! Initiating ContextRefreshedEvent Listner !!");
     }
 }

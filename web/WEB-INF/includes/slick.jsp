@@ -6,42 +6,52 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"  %>
+
+
+<style>
+    #slider-div *:focus {
+        outline:none;
+    }
+</style>
+
 <div class="container">
+
     <div style="width: 100%; height: 70%; ">
         <div id="slider-div"  >
-            <div>
-                <img id="item1" src="/resources/img/스프링.jpg" >
+            <div onclick="window.open('https://github.com/soominJung0413')" style="cursor: pointer; ">
+                <img id="item1" src="/resources/img/github.png" >
                 </img>
                 <p id="itemPara1" >
-                    새로운 강의가 시작되었습니다.
-
-                    d
-                    d
-                    d
-                    d
-                    d
-                    d
+                    My GitHub
+                    (●'◡'●)
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                 </p>
             </div>
-            <div>
-                <img id="item2" src="/resources/img/스프링.jpg" >
+            <div onclick="window.open('https://doli0413.tistory.com/')" style="cursor: pointer">
+                <img id="item2" src="/resources/img/tistory.png" >
                 </img>
                 <p id="itemPara2">
-                    새로운 도서와 함께 지식을 쌓아가세요.
+                    MyTitory
+                    (❁´◡`❁)
                 </p>
             </div>
-            <div>
-                <img id="item3" src="/resources/img/스프링.jpg" >
+            <div onclick="window.open('https://doli0413.tistory.com/')" style="cursor: pointer">
+                <img id="item3" src="/resources/img/tistory.png" >
                 </img>
                 <p id="itemPara3">
-                    메세지3
+                    MyTitory
+                    (❁´◡`❁)
                 </p>
             </div>
-            <div>
-                <img id="item4" src="/resources/img/스프링.jpg" >
+            <div onclick="window.open('https://www.google.com')" style="cursor: pointer">
+                <img id="item4" src="/resources/img/google.png" >
                 </img>
                 <p id="itemPara4">
-                   메세지4
+                   Google!
+                    (⌐■_■)
                 </p>
             </div>
 

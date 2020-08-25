@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="loginPassword"><spring:message code="login.password" /></label>
-                <form:input required="true" placeholder='Input your Password' cssClass="form-control" id="loginPassword" aria-describedby="nameHelp" path="loginPassword"/>
+                <form:password required="true" placeholder='Input your Password' cssClass="form-control" id="loginPassword" aria-describedby="nameHelp" path="loginPassword"/>
                 <small id="loginPasswordHelp" class="form-text text-muted"></small>
                 <form:errors path="loginPassword"  element="small" id="loginPasswordHelp" cssClass="form-text text-muted" />
             </div>

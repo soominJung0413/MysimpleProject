@@ -16,14 +16,17 @@
     </properties>
 
     <dependencies>
-        <!-- Validation -->
-
+        <!-- Validation --><!--db logging-->
         <dependency>
-            <groupId>org.hibernate.validator</groupId>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>6.0.7.Final</version>
         </dependency>
-        <!--db logging-->
         <dependency>
             <groupId>org.bgee.log4jdbc-log4j2</groupId>
             <artifactId>log4jdbc-log4j2-jdbc4</artifactId>

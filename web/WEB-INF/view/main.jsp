@@ -48,7 +48,7 @@
         }
 
         history.replaceState({modalOver:true},'',null);//<히스토리내서 내용 삭제시킬 수 있어야함
-        console.log('삭제여부'+RegisterResult);
+        console.log('메시지여부'+RegisterResult);
 
       });
 
@@ -81,10 +81,10 @@
               $('#myRegisterModal').find('p').empty();
               $('#myRegisterModal').find('p').append(text);
               $('#myRegisterModal').modal('show');
-            }else if(RegisterResult.startsWith("logoutFailed")){
+            }else if(RegisterResult.startsWith("Failed")){
               $('#myRegisterModal').find('p').html(' <spring:message code="testLogoutFailed" > <spring:argument value="${requestScope.Success}" />  </spring:message>');
               var text = $('#myRegisterModal').find('p').html();
-              text = text.replace("logoutFailed","");
+              text = text.replace("Failed","");
               console.log(text)
               $('#myRegisterModal').find('p').empty();
               $('#myRegisterModal').find('p').append(text);
@@ -124,7 +124,90 @@
 
     <%-- Content Body --%>
 
-    <%-- end ContentBody --%>
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">World</strong>
+            <h3 class="mb-0">Featured post</h3>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="stretched-link">Continue reading</a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-success">Design</strong>
+            <h3 class="mb-0">Post title</h3>
+            <div class="mb-1 text-muted">Nov 11</div>
+            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="stretched-link">Continue reading</a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8 blog-main">
+        <h3 class="pb-4 mb-4 font-italic border-bottom">
+          글 목록
+        </h3>
+
+        <div class="blog-post">
+          <h2 class="blog-post-title">최신글</h2>
+          <p class="blog-post-meta">날짜 by <a href="#">작성자</a></p>
+            <p>글내용</p>
+        </div><!-- /.blog-post -->
+
+
+          <%--페이지 네이션, 처리필요--%>
+        <nav class="blog-pagination">
+          <a class="btn btn-outline-primary" href="#">Older</a>
+          <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+        </nav>
+
+      </div><!-- /.blog-main -->
+
+      <aside class="col-md-4 blog-sidebar">
+        <div class="p-4 mb-3 bg-light rounded">
+          <h4 class="font-italic">About</h4>
+          <p class="mb-0"><em>
+            <spring:message code="main.about" />
+          </em></p>
+        </div>
+
+        <div class="p-4">
+          <h4 class="font-italic">월 별 기록</h4>
+          <ol class="list-unstyled mb-0">
+            <li><a href="#">년도와 월</a></li>
+          </ol>
+        </div>
+
+        <div class="p-4">
+          <h4 class="font-italic">Elsewhere</h4>
+          <ol class="list-unstyled">
+            <li><a href="https://github.com/soominJung0413" target="_blank">GitHub</a></li>
+            <li><a href="https://doli0413.tistory.com/" target="_blank">Tistory</a></li>
+            <li><a href="#top">Back to top</a></li>
+          </ol>
+        </div>
+      </aside><!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+  </main><!-- /.container -->
+
+  <%-- end ContentBody --%>
 
 
   

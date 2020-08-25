@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/resources/css/footer.css">
 
 <footer class="footer mt-auto py-3" id="footer">
-    <div class="container">
+    <div class="container d-flex justify-content-end">
         <span id="footer_text" class="text-muted">&copy; Developp.....by<spring:message code="footer.developer" /></span>
     </div>
 </footer>

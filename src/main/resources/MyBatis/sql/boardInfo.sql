@@ -1,0 +1,11 @@
+CREATE TABLE BOARDINFO(
+    boardNo NUMBER(10,0) PRIMARY KEY,
+    boardTitle NVARCHAR2(255) NOT NULL,
+    boardCategory NVARCHAR2(255) DEFAULT 'NONE',
+    boardContent LONG ,
+    boardRegDate DATE DEFAULT SYSDATE,
+    boardUpdateDate DATE DEFAULT SYSDATE,
+    USERID NVARCHAR2(255) CONSTRAINT board_userid_fk REFERENCES USERINFO(USERID)
+    );
+
+    CREATE SEQUENCE seq_boardInfo;
