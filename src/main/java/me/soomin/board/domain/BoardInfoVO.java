@@ -15,4 +15,6 @@ public class BoardInfoVO {
     private Date regdate;
     private Date updateDate;
     private String userId;
+    private int readCount;
+    private int likeCount;
 }

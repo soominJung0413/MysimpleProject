@@ -2,6 +2,7 @@ package config;
 
 import config.mybatis.MyBatisConfig;
 import me.soomin.user.domain.validation.UserLoginRequestValidator;
+import me.soomin.user.persistence.mapper.SimpleMapper;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;

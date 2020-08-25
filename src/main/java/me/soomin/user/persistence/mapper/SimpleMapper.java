@@ -4,6 +4,7 @@ import me.soomin.user.domain.dtd.UserModifyRequest;
 import me.soomin.user.domain.dtd.UserRegisterRequest;
 import me.soomin.user.domain.vo.UserInfoVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

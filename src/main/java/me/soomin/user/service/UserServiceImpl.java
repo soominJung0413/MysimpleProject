@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional(rollbackFor = {SQLException.class})
     public Long registerUserInfoGetKey(UserRegisterRequest userRegisterRequest){
         Long registerCount = simpleMapper.insertSelectKey(userRegisterRequest);
 
@@ -61,6 +62,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional(rollbackFor = {SQLException.class})
     public boolean modifyUserInfo(UserModifyRequest userModifyRequest) {
         int modifyCount = simpleMapper.update(userModifyRequest);
 
@@ -68,6 +70,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional(rollbackFor = {SQLException.class})
     public boolean removeUserInfo(Long userNo) {
         int deleteCount = simpleMapper.delete(userNo);
 

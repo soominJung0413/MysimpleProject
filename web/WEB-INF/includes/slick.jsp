@@ -30,11 +30,11 @@
                     <br>
                 </p>
             </div>
-            <div onclick="window.open('https://doli0413.tistory.com/')" style="cursor: pointer">
-                <img id="item2" src="/resources/img/tistory.png" >
+            <div onclick="window.open('https://okky.kr/article/307828')" style="cursor: pointer">
+                <img id="item2" src="/resources/img/okky.png" >
                 </img>
                 <p id="itemPara2">
-                    MyTitory
+                    Okky MyBatis Cache...!
                     (❁´◡`❁)
                 </p>
             </div>

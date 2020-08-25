@@ -26,4 +26,8 @@ public interface BoardMapper {
     public int update(BoardModifyRequest boardModifyRequest);
 
     public int delete(Long boardNo);
+
+    public int updateReadCount(Long boardNo);
+
+    public int updateLikeCount(Long boardNo);
 }

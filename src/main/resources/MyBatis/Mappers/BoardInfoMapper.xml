@@ -3,7 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="me.soomin.board.persistence.mappers.BoardMapper">
-    <resultMap id="boardVO" type="me.soomin.board.domain.BoardInfoVO">
+
+    <resultMap id="boardVO" type="me.soomin.board.domain.BoardInfoVO" >
         <result column="BOARDNO" property="boardNo" javaType="java.lang.Long" />
         <result column="BOARDTITLE" property="boardTitle" javaType="java.lang.String" />
         <result column="BOARDCATEGORY" property="boardCategory" javaType="java.lang.String" />
@@ -11,6 +12,8 @@
         <result column="BOARDREGDATE" property="regdate" javaType="java.util.Date" />
         <result column="BOARDUPDATEDATE" property="updateDate" javaType="java.util.Date" />
         <result column="USERID" property="userId" javaType="java.lang.String" />
+        <result column="READCOUNT" property="readCount" javaType="java.lang.Integer" />
+        <result column="LIKECOUNT" property="likeCount" javaType="java.lang.Integer"/>
     </resultMap>
 
     <parameterMap id="boardRegisterRequest" type="me.soomin.board.domain.dtd.BoardRegisterRequest">
@@ -35,11 +38,11 @@
         ]]>
     </select>
 
-    <select id="get" parameterType="java.lang.Long" resultMap="boardVO">
+    <select id="get" parameterType="java.lang.Long" resultMap="boardVO" >
         SELECT * FROM BOARDINFO WHERE USERID = #{arg0}
     </select>
 
-    <select id="getFromId" parameterType="java.lang.String" resultMap="boardVO">
+    <select id="getFromId" parameterType="java.lang.String" resultMap="boardVO" >
         SELECT * FROM BOARDINFO WHERE USERID = #{arg0}
     </select>
 
@@ -78,4 +81,12 @@
         DELETE FROM BOARDINFO WHERE BOARDNO = #{arg0}
     </delete>
 
+    <!--Sub Transaction-->
+    <update id="updateReadCount" parameterType="java.lang.Long" >
+        UPDATE BOARDINFO SET READCOUNT = READCOUNT+1 WHERE BOARDNO=#{arg0}
+    </update>
+    
+    <update id="updateLikeCount" parameterType="java.lang.Long" >
+        UPDATE BOARDINFO SET LIKECOUNT = LIKECOUNT+1 WHERE BOARDNO=#{arg0}
+    </update>
 </mapper>
