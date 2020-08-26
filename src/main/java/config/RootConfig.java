@@ -1,8 +1,10 @@
 package config;
 
 import config.mybatis.MyBatisConfig;
+import me.soomin.board.service.BoardService;
 import me.soomin.user.domain.validation.UserLoginRequestValidator;
 import me.soomin.user.persistence.mapper.SimpleMapper;
+import me.soomin.user.service.UserService;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceView;
 
 @Configuration
 @Import({DbcpConfig.class, MyBatisConfig.class})
+@ComponentScan(basePackageClasses = {UserService.class, BoardService.class})
 public class RootConfig {
     @Bean
     public static PropertySourcesPlaceholderConfigurer configurer(){
@@ -25,7 +28,7 @@ public class RootConfig {
     public ResourceBundleMessageSource messageSource(){
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setBasenames("message.main","message.modal","message.register","message.login");
+        messageSource.setBasenames("message.main","message.modal","message.register","message.login","message.list","message.readBoardContent");
         return messageSource;
     }
 

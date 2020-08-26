@@ -19,7 +19,7 @@
             <c:if test="${not empty sessionScope.userInfo}">
                 <a class="p-2 text-dark" href="${context}/${sessionScope.userInfo.userId}/logout"><spring:message code="navar.logout" /></a>
             </c:if>
-            <a class="p-2 text-dark" href="${context}/board"><spring:message code="navar.board" /></a>
+            <a class="p-2 text-dark" href="${context}/board/get"><spring:message code="navar.board" /></a>
             <c:if test="${not empty sessionScope.userInfo}">
             <a class="p-2 text-dark" href="${context}/${sessionScope.userInfo.userId}/menu"><spring:message code="navar.mymenu" /></a>
             </c:if>

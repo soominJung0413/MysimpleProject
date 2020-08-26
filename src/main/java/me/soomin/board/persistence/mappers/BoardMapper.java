@@ -6,14 +6,16 @@ import me.soomin.board.domain.dtd.BoardModifyRequest;
 import me.soomin.board.domain.dtd.BoardRegisterRequest;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 
 public interface BoardMapper {
 
     public BoardInfoVO get(Long boardNo);
 
-    public BoardInfoVO getList();
+    public List<BoardInfoVO> getList();
 
-    public BoardInfoVO getFromId(String userId);
+    public  List<BoardInfoVO> getFromId(String userId);
 
     public int insert(BoardRegisterRequest boardRegisterRequest);
 

@@ -8,6 +8,10 @@ import me.soomin.board.domain.dtd.BoardRegisterRequest;
 import me.soomin.board.persistence.mappers.BoardMapper;
 import me.soomin.user.persistence.mapper.SimpleMapper;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matcher;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNot;
 import org.hamcrest.core.IsNull;
@@ -95,11 +99,11 @@ public class MapperTests {
         Assert.assertThat(result, IsNot.not(0));
     }
 
-    @Test
+//    @Test
     public void updateTest(){
         Assert.assertThat(boardMapper,IsNull.notNullValue());
         BoardModifyRequest boardModifyRequest = new BoardModifyRequest();
-        boardModifyRequest.setUserId("doli0413");
+        boardModifyRequest.setUserId("doldifyRequest boardModifyRi0413");
         boardModifyRequest.setBoardTitle("수정된 타이틀");
         boardModifyRequest.setBoardCategory("수정된 카테고리");
         boardModifyRequest.setBoardContent("수정된 제목");
@@ -110,5 +114,27 @@ public class MapperTests {
         log.info(result);
     }
 
+//    @Test
+    public void testReadCount(){
+        Assert.assertThat(boardMapper,IsNull.notNullValue());
+        boardMapper.updateReadCount(4L);
+        BoardInfoVO boardInfoVO = boardMapper.get(4L);
+        int readCount = boardInfoVO.getReadCount();
+        log.info(boardInfoVO.getReadCount());
 
+        Assert.assertThat(readCount, Matchers.greaterThan(2));
+    }
+
+//    @Test
+    public void testLikeCount(){
+        Assert.assertThat(boardMapper,IsNull.notNullValue());
+        boardMapper.updateLikeCount(4l);
+        BoardInfoVO boardInfoVO = boardMapper.get(4l);
+
+        int likeCount = boardInfoVO.getLikeCount();
+
+        log.info(likeCount);
+
+        Assert.assertThat(likeCount,Matchers.greaterThan(0));
+    }
 }

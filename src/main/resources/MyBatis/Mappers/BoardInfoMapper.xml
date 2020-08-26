@@ -39,7 +39,7 @@
     </select>
 
     <select id="get" parameterType="java.lang.Long" resultMap="boardVO" >
-        SELECT * FROM BOARDINFO WHERE USERID = #{arg0}
+        SELECT * FROM BOARDINFO WHERE BOARDNO = #{arg0}
     </select>
 
     <select id="getFromId" parameterType="java.lang.String" resultMap="boardVO" >

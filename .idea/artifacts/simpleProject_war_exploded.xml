@@ -2,14 +2,11 @@
   <artifact type="exploded-war" name="simpleProject:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/simpleProject_war_exploded</output-path>
     <root id="root">
+      <element id="javaee-facet-resources" facet="simpleProject/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="simpleProject" />
           <element id="library" level="application" name="jquery" />
-          <element id="module-output" name="MysimpleProject" />
-          <element id="library" level="application" name="a076d05399" />
-          <element id="library" level="application" name="bootstrap" />
-          <element id="library" level="application" name="popper" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.3.1" />
@@ -40,14 +37,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.0.7.RELEASE" />
           <element id="library" level="project" name="ojdbc8" />
-          <element id="library" level="project" name="ojdbc81" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="simpleProject/web/Web" />
-      <element id="javaee-facet-resources" facet="MysimpleProject/web/Web" />
-      <element id="module-output" name="MysimpleProject" />
-      <element id="module-test-output" name="MysimpleProject" />
-      <element id="module-source" name="MysimpleProject" />
     </root>
   </artifact>
 </component>

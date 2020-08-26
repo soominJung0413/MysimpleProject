@@ -178,30 +178,9 @@
 
       </div><!-- /.blog-main -->
 
-      <aside class="col-md-4 blog-sidebar">
-        <div class="p-4 mb-3 bg-light rounded">
-          <h4 class="font-italic">About</h4>
-          <p class="mb-0"><em>
-            <spring:message code="main.about" />
-          </em></p>
-        </div>
-
-        <div class="p-4">
-          <h4 class="font-italic">월 별 기록</h4>
-          <ol class="list-unstyled mb-0">
-            <li><a href="#">년도와 월</a></li>
-          </ol>
-        </div>
-
-        <div class="p-4">
-          <h4 class="font-italic">Elsewhere</h4>
-          <ol class="list-unstyled">
-            <li><a href="https://github.com/soominJung0413" target="_blank">GitHub</a></li>
-            <li><a href="https://doli0413.tistory.com/" target="_blank">Tistory</a></li>
-            <li><a href="#top">Back to top</a></li>
-          </ol>
-        </div>
-      </aside><!-- /.blog-sidebar -->
+      <%--asidebar--%>
+      <%@include file="/WEB-INF/includes/aside.jsp"%>
+      <!-- end asidebar -->
 
     </div><!-- /.row -->
 
