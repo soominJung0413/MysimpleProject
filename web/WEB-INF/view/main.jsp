@@ -28,6 +28,7 @@
   <title><spring:message code="navar.main"/> </title>
 </head>
 <body >
+
   <div class="container">
 
   <%@include file="../includes/navar.jsp"%>

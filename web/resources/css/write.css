@@ -1,0 +1,21 @@
+.blog-post{
+    width: 98%;
+    margin-left: 2%;
+}
+
+#boardTitle{
+    width: 98%;
+    height: 70%;
+    font-size: xx-large;
+    border:none;
+}
+#boardTitle:focus{
+    outline: none;
+}
+#boardContent{
+    max-width: 100%;
+    resize: none;
+    overflow: hidden;
+    border: none;
+    outline: none;
+}

@@ -16,12 +16,20 @@
             <c:if test="${empty sessionScope.userInfo}">
             <a class="p-2 text-dark" href="${context}/login"><spring:message code="naver.login" /></a>
             </c:if>
-            <c:if test="${not empty sessionScope.userInfo}">
-                <a class="p-2 text-dark" href="${context}/${sessionScope.userInfo.userId}/logout"><spring:message code="navar.logout" /></a>
-            </c:if>
             <a class="p-2 text-dark" href="${context}/board/get"><spring:message code="navar.board" /></a>
             <c:if test="${not empty sessionScope.userInfo}">
-            <a class="p-2 text-dark" href="${context}/${sessionScope.userInfo.userId}/menu"><spring:message code="navar.mymenu" /></a>
+            <!-- Small button groups (default and split) -->
+            <div class="btn-group">
+                <a class="p-2 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ${sessionScope.userInfo.userId}
+                </a>
+                <div class="dropdown-menu" >
+                    <a class="p-2 text-dark" href="${context}/${sessionScope.userInfo.userId}/menu"><spring:message code="navar.mymenu" /></a>
+                    <a class="p-2 text-dark" href="${context}/board/${sessionScope.userInfo.userId}/write"><spring:message code="navar.write" /></a>
+                    <br/>
+                    <a class="p-2 text-dark" href="${context}/${sessionScope.userInfo.userId}/logout"><spring:message code="navar.logout" /></a>
+                </div>
+            </div>
             </c:if>
         </nav>
         <a class="btn btn-sm btn-outline-dark" href="${context}/user/create"><spring:message code="navar.register" /></a>

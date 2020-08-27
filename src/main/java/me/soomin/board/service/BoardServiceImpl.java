@@ -15,6 +15,8 @@ import java.util.List;
 @Service
 public class BoardServiceImpl implements BoardService{
 
+
+
     @Autowired
     private BoardMapper boardMapper;
 

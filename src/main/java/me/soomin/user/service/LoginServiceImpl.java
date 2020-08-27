@@ -55,7 +55,7 @@ public class LoginServiceImpl implements  LoginService{
 
         log.info("세션에 저장할 유저정보 ::::"+userInfoVO);
 
-        HttpSession httpSession = request.getSession(false);
+        HttpSession httpSession = request.getSession();
         httpSession.setAttribute("userInfo",userInfoVO);
     }
 }
