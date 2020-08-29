@@ -35,43 +35,42 @@
 </head>
 <body>
 
-        <div class="container" role="main">
-            <%--include navar--%>
-            <%@include file="/WEB-INF/includes/navar.jsp"%>
+<div class="container" role="main">
+<%--include navar--%>
+    <%@include file="/WEB-INF/includes/navar.jsp"%>
 
-            <%--end include navar--%>
-                <div class="row">
-                    <div class="blog-post">
-                       <%-- <form:select path="" items="" />--%><%--유저테이블과 연결되는 고유의 카테고리가 존재해야만한다.--%>
-                        <%--@elvariable id="boardRegisterRequest" type="me.soomin.board.domain.dtd.BoardRegisterRequest"--%>
+<%--end include navar--%>
+    <div class="row">
 
-                        <form:form method="post"
+        <%-- <form:select path="" items="" />--%><%--유저테이블과 연결되는 고유의 카테고리가 존재해야만한다.--%>
+        <%--@elvariable id="boardRegisterRequest" type="me.soomin.board.domain.dtd.BoardRegisterRequest"--%>
+            <div class="col-md-8 blog-main">
+                <div class="blog-post">
+            <form:form method="post"
                                    action="${context}/board/${sessionScope.userInfo.userId}/write" modelAttribute="boardRegisterRequest">
-                            <form:select path="boardCategory">
+                <input type="hidden" value="${sessionScope.userInfo.userId}" />
+                    <form:hidden path="criteria.amount"/>
+                    <form:hidden path="criteria.pageNum"/>
+                            <form:select path="boardCategory" cssClass="custom-select custom-select-sm" cssStyle="width: 20%">
                                 <form:option value="NONE"/>
                             </form:select>
-                            <input type="hidden" value="${sessionScope.userInfo.userId}" />
                             <form:input path="boardTitle" placeholder='Please enter a title.' required="true" />
                             <form:errors path="boardTitle"/>
-                            <hr>
-                            <form:textarea path="boardContent" cols="180" rows="20" placeholder="Please enter a Content (●'◡'●)" onkeyup="resize(this)" onkeydown="resize(this)" />
-                            <%--onkeyup="resize(this)" onkeydown="resize(this)"--%>
-                            <input type="submit" class="btn btn-outline-dark" value="<spring:message code="write.submit" />"/>
-                        </form:form>
-                    </div>
-                    <div class="col-md-8 blog-main">
-
-
-
-                    <%--asidebar--%>
-                    <%@include file="/WEB-INF/includes/aside.jsp"%>
-                    <!-- end asidebar -->
-                    </div>
+                <hr>
+                <form:textarea path="boardContent" cols="180" rows="20" placeholder="Please enter a Content (●'◡'●)" onkeyup="resize(this)" onkeydown="resize(this)" />
+                <%--onkeyup="resize(this)" onkeydown="resize(this)"--%>
+                <input type="submit" class="btn btn-outline-dark" value="<spring:message code="write.submit" />"/>
+            </form:form>
                 </div>
+            </div>
 
+                <%--asidebar--%>
+                <%@include file="/WEB-INF/includes/aside.jsp"%>
+                <!-- end asidebar -->
+    </div>
             <%--include footer--%>
             <%@include file="/WEB-INF/includes/footer.jsp"%>
             <%--end include footer--%>
-        </div>
+</div>
 </body>
 </html>

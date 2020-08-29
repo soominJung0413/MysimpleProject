@@ -1,6 +1,7 @@
 package me.soomin.board.domain.dtd;
 
 import lombok.Data;
+import me.soomin.board.domain.pagination.Criteria;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -8,6 +9,8 @@ import java.util.Date;
 //DTD
 @Data
 public class BoardRegisterRequest {
+
+    private Criteria criteria;
 
     private Long boardNo;
     @NotBlank

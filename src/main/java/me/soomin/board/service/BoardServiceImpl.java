@@ -3,6 +3,7 @@ package me.soomin.board.service;
 import me.soomin.board.domain.BoardInfoVO;
 import me.soomin.board.domain.dtd.BoardModifyRequest;
 import me.soomin.board.domain.dtd.BoardRegisterRequest;
+import me.soomin.board.domain.pagination.Criteria;
 import me.soomin.board.persistence.mappers.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class BoardServiceImpl implements BoardService{
 
     @Autowired
     private BoardMapper boardMapper;
+
+    @Override
+    public List<BoardInfoVO> readPagingList(Criteria criteria) {
+        return boardMapper.getListPaging(criteria);
+    }
 
     @Override
     @Transactional(rollbackFor = SQLException.class,propagation = Propagation.REQUIRES_NEW)

@@ -4,6 +4,7 @@ package exam;
 import org.junit.Test;
 
 import java.sql.PreparedStatement;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class exam {
@@ -51,5 +52,9 @@ public class exam {
             System.out.println(i);
         }
         System.out.println(sum);
+    }
+
+    @Test
+    public void testCalendar(){
     }
 }

@@ -4,12 +4,16 @@ package me.soomin.board.persistence.mappers;
 import me.soomin.board.domain.BoardInfoVO;
 import me.soomin.board.domain.dtd.BoardModifyRequest;
 import me.soomin.board.domain.dtd.BoardRegisterRequest;
+import me.soomin.board.domain.pagination.Criteria;
+import me.soomin.board.domain.pagination.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 
 public interface BoardMapper {
+
+    public List<BoardInfoVO> getListPaging(Criteria criteria);
 
     public BoardInfoVO get(Long boardNo);
 

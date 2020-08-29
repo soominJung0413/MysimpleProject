@@ -18,13 +18,114 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js'></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="/resources/js/list.js"></script>
     <title><spring:message code="list.title" /></title>
 
-    <%--list.jsp css--%>
+<%--list.jsp css--%>
     <link rel="stylesheet" href="/resources/css/list.css">
-    <%--end list.jsp css--%>
+<%--end list.jsp css--%>
+<%--list.js --%>
+    <%--end list.js--%>
+    <%-- RedirectAttributes Controll --%>
+    <script>
+        $(function(){
+            var RegisterResult = '<c:out value="${requestScope.Success}" />';
+            if(RegisterResult !== ''){
+                if (!(history.state != null && history.state.modalOver === true)) {
+                    checkModal(RegisterResult);
+                }
+            }
+
+            history.replaceState({modalOver:true},'',null);//<히스토리내서 내용 삭제시킬 수 있어야함
+            console.log('메시지여부'+RegisterResult);
+
+        });
+
+        function checkModal(RegisterResult){
+
+            if(!(RegisterResult == '')){
+                if(RegisterResult.startsWith("login")){
+
+                    $('#myRegisterModal').find('p').html(' <spring:message code="testLogin.body" > <spring:argument value='${requestScope.Success}' />  </spring:message>');
+                    var text = $('#myRegisterModal').find('p').html();
+                    text = text.replace("login","");
+                    console.log(text)
+                    $('#myRegisterModal').find('p').empty();
+                    $('#myRegisterModal').find('p').append(text);
+                    $('#myRegisterModal').modal('show');
+
+                }else if(RegisterResult.startsWith("register")){
+                    $('#myRegisterModal').find('p').html(' <spring:message code="test.body" > <spring:argument value="${requestScope.Success}" />  </spring:message>');
+                    var text = $('#myRegisterModal').find('p').html();
+                    text = text.replace("register","");
+                    console.log(text)
+                    $('#myRegisterModal').find('p').empty();
+                    $('#myRegisterModal').find('p').append(text);
+                    $('#myRegisterModal').modal('show');
+                }else if(RegisterResult.startsWith("logout")){
+                    $('#myRegisterModal').find('p').html(' <spring:message code="testLogout.body" > <spring:argument value="${requestScope.Success}" />  </spring:message>');
+                    var text = $('#myRegisterModal').find('p').html();
+                    text = text.replace("logout","");
+                    console.log(text)
+                    $('#myRegisterModal').find('p').empty();
+                    $('#myRegisterModal').find('p').append(text);
+                    $('#myRegisterModal').modal('show');
+                }else if(RegisterResult.startsWith("Failed")){
+                    $('#myRegisterModal').find('p').html(' <spring:message code="testLogoutFailed" > <spring:argument value="${requestScope.Success}" />  </spring:message>');
+                    var text = $('#myRegisterModal').find('p').html();
+                    text = text.replace("Failed","");
+                    console.log(text)
+                    $('#myRegisterModal').find('p').empty();
+                    $('#myRegisterModal').find('p').append(text);
+                    $('#myRegisterModal').modal('show');
+                }else if(RegisterResult.startsWith("Write")){
+                    $('#myRegisterModal').find('p').html(' <spring:message code="testWrite.body" > <spring:argument value="${requestScope.Success}" />  </spring:message>');
+                    var text = $('#myRegisterModal').find('p').html();
+                    text = text.replace("Write","");
+                    console.log(text)
+                    $('#myRegisterModal').find('p').empty();
+                    $('#myRegisterModal').find('p').append(text);
+                    $('#myRegisterModal').modal('show');
+                }
+            }
+
+        }
+    </script>
 </head>
 <body>
+<div class="modal" id="myRegisterModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <spring:message code="test.title" />
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="myRegisterModalBody">
+                <p>
+                    <spring:message code="test.body" >
+                        <spring:argument value="${requestScope.Success}" />
+                    </spring:message>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">
+                    <spring:message code="test.close"  />
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- end Modal Controll --%>
+
+ <%--@elvariable id="criteria" type="me.soomin.board.domain.pagination.Criteria"--%>
+ <form:form id="readBoardForm" modelAttribute="criteria" method="get" >
+     <form:hidden path="amount"/>
+     <form:hidden path="pageNum"/>
+ </form:form>
     <div class="container" role="main">
     <%@include file="/WEB-INF/includes/navar.jsp"%>
 
@@ -44,9 +145,9 @@
             </thead>
             <tbody>
             <c:forEach var="board" items="${boardInfoVO}">
-            <tr class="boardListRow" onclick="location.href='/board/${board.boardNo}/read'">
-                <td>${board.boardNo}</td>
-                <td>${board.boardTitle}</td>
+            <tr class="boardListRow" >
+                <td class="boardListNo">${board.boardNo}</td>
+                <td >${board.boardTitle}</td>
                 <td>${board.boardCategory}</td>
                 <td>${board.readCount}</td>
                 <td>${board.userId}</td>
@@ -55,7 +156,11 @@
             </c:forEach>
             </tbody>
         </table>
+                <%--pagenation--%>
+                <%@include file="/WEB-INF/includes/pagenation.jsp"%>
+                <%--end pagenation--%>
             </div>
+
         <%--end table--%>
 
 
@@ -66,5 +171,7 @@
 
     <%@include file="/WEB-INF/includes/footer.jsp"%>
     </div>
+<%--PageDataForm--%>
+
 </body>
 </html>

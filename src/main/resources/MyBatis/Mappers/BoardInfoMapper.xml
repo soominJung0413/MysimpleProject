@@ -32,6 +32,17 @@
         <parameter property="userId" javaType="java.lang.String"/>
     </parameterMap>
 
+    <!--Pagination-->
+    <select id="getListPaging" parameterType="me.soomin.board.domain.pagination.Criteria" resultMap="boardVO">
+        <![CDATA[
+        SELECT  BOARDNO,BOARDTITLE,BOARDCATEGORY,BOARDCONTENT, BOARDREGDATE, BOARDUPDATEDATE, USERID, READCOUNT,LIKECOUNT FROM
+            (SELECT /*+ INDEX_DESC(BOARDINFO SYS_C007306)*/
+                 ROWNUM rn, BOARDNO,BOARDTITLE,BOARDCATEGORY,BOARDCONTENT, BOARDREGDATE, BOARDUPDATEDATE, USERID, READCOUNT,LIKECOUNT from boardinfo
+             WHERE ROWNUM <= #{amount} * #{pageNum})
+        WHERE rn > #{amount} * (#{pageNum} - 1)
+        ]]>
+    </select>
+
     <select id="getList" resultMap="boardVO" >
         <![CDATA[
         SELECT * FROM BOARDINFO WHERE BOARDNO > 0
