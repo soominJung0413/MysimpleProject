@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface BoardService {
 
+    public int readTotalCount(Criteria criteria);
+
     public List<BoardInfoVO> readPagingList(Criteria criteria);
 
     public BoardInfoVO readBoardContent(Long boardNo);

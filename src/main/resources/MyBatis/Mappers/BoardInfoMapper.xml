@@ -31,6 +31,10 @@
         <parameter property="boardContent" javaType="java.lang.String"/>
         <parameter property="userId" javaType="java.lang.String"/>
     </parameterMap>
+    <!--GET TOTAL COUNT-->
+    <select id="getTotalCount" resultType="java.lang.Integer" parameterType="me.soomin.board.domain.pagination.Criteria">
+        SELECT COUNT(*) FROM BOARDINFO
+    </select>
 
     <!--Pagination-->
     <select id="getListPaging" parameterType="me.soomin.board.domain.pagination.Criteria" resultMap="boardVO">

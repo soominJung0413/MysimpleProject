@@ -22,6 +22,11 @@ public class BoardServiceImpl implements BoardService{
     private BoardMapper boardMapper;
 
     @Override
+    public int readTotalCount(Criteria criteria) {
+        return boardMapper.getTotalCount(criteria);
+    }
+
+    @Override
     public List<BoardInfoVO> readPagingList(Criteria criteria) {
         return boardMapper.getListPaging(criteria);
     }

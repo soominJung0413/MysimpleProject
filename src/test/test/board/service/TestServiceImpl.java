@@ -4,6 +4,7 @@ import config.ApplicationConfig;
 import lombok.extern.log4j.Log4j;
 import me.soomin.board.domain.dtd.BoardModifyRequest;
 import me.soomin.board.domain.dtd.BoardRegisterRequest;
+import me.soomin.board.domain.pagination.Criteria;
 import me.soomin.board.service.BoardService;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.Is;
@@ -24,6 +25,15 @@ public class TestServiceImpl {
 
     @Autowired
     private BoardService boardService;
+
+    @Test
+    public void testReadTotalCount(){
+        Assert.assertThat(boardService,IsNull.notNullValue());
+
+        int result = boardService.readTotalCount(new Criteria());
+
+        Assert.assertThat(result,Matchers.greaterThan(-1));
+    }
 
 //    @Test
     public void testReadBoardNo(){

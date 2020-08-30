@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j;
 import me.soomin.board.domain.BoardInfoVO;
 import me.soomin.board.domain.dtd.BoardModifyRequest;
 import me.soomin.board.domain.dtd.BoardRegisterRequest;
+import me.soomin.board.domain.pagination.Criteria;
 import me.soomin.board.persistence.mappers.BoardMapper;
 import me.soomin.user.persistence.mapper.SimpleMapper;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -38,6 +39,15 @@ public class MapperTests {
 
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
+
+
+//    @Test
+    public void testGetTotalCount(){
+        Assert.assertThat(boardMapper,IsNull.notNullValue());
+        int result = boardMapper.getTotalCount(new Criteria());
+
+        Assert.assertThat(result,Matchers.greaterThan(-1));
+    }
 
 //    @Test
     public void checkWiring(){

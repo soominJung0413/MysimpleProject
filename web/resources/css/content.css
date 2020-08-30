@@ -1,5 +1,7 @@
 #content{
+    max-width: 100%;
     white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 #contentInfo {
 }
@@ -8,4 +10,13 @@
 }
 #likeBox{
     justify-content: center;
+}
+#modAndRem * {
+    text-decoration: underline;
+}
+#mod:hover{
+    font-weight: bold;
+}
+#rem:hover{
+    font-weight: bold;
 }

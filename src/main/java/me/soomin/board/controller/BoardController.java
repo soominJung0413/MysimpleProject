@@ -28,7 +28,7 @@ public class BoardController {
     @RequestMapping(value = "/get",method = RequestMethod.GET)
     public String provideBoardTable(Model model,@ModelAttribute Criteria criteria){
         log.info("넘어온 파라미터:::::"+criteria);
-        PageInfo pageInfo = new PageInfo(criteria,1000);
+        PageInfo pageInfo = new PageInfo(criteria,boardService.readTotalCount(criteria));
         log.info("페이지네이션 정보 :::::"+pageInfo.getStartPage());
         List<BoardInfoVO> boardInfoVO = boardService.readPagingList(criteria);
         model.addAttribute("boardInfoVO",boardInfoVO);

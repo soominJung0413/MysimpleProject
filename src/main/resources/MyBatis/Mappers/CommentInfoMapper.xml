@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.soomin.comment.persistence.CommentMapper">
+
+    <resultMap id="commentVo" type="me.soomin.comment.domain.CommentVO">
+        <result column="COMMENTNO" property="commentNo" javaType="java.lang.Long" />
+        <result column="BOARDNO" property="boardNo" javaType="java.lang.Long" />
+        <result column="USERID" property="userId" javaType="java.lang.String" />
+        <result column="REGDATE" property="regdate" javaType="java.util.Date" />
+        <result column="UPDATEDATE" property="updateDate" javaType="java.util.Date" />
+        <result column="CONTENT" property="content" javaType="java.lang.String" />
+    </resultMap>
+
+    <select id="getList" resultMap="commentVo">
+        <![CDATA[
+        SELECT * FROM COMMENTINFO
+        ]]>
+    </select>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="commentVo">
+        SELECT * FROM COMMENTINFO WHERE COMMENTNO = #{arg0}
+    </select>
+
+</mapper>

@@ -13,6 +13,8 @@ import java.util.List;
 
 public interface BoardMapper {
 
+    public int getTotalCount(Criteria criteria);
+
     public List<BoardInfoVO> getListPaging(Criteria criteria);
 
     public BoardInfoVO get(Long boardNo);
