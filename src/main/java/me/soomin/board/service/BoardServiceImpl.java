@@ -5,11 +5,14 @@ import me.soomin.board.domain.dtd.BoardModifyRequest;
 import me.soomin.board.domain.dtd.BoardRegisterRequest;
 import me.soomin.board.domain.pagination.Criteria;
 import me.soomin.board.persistence.mappers.BoardMapper;
+import me.soomin.user.domain.vo.UserInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
 
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -87,7 +90,23 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     @Transactional(rollbackFor = {SQLException.class})
-    public boolean deleteBoard(Long boardNo) {
+    public boolean deleteBoard(Long boardNo, HttpSession session, Errors errors)
+    {
+        BoardInfoVO boardInfoVO = boardMapper.get(boardNo);
+        if(boardInfoVO == null){
+            errors.reject("NotExistPost");
+            return false;
+        }
+        try{
+           UserInfoVO userInfoVO= (UserInfoVO)session.getAttribute("userInfo");
+            if( ! (boardInfoVO.getUserId().equals(userInfoVO.getUserId())) ){
+                errors.reject("NotMatchingId");
+                return false;
+            }
+        }catch(NullPointerException e){
+            errors.reject("NoSessionUserInfo");
+            return false;
+        }
         return 1 == boardMapper.delete(boardNo);
     }
 

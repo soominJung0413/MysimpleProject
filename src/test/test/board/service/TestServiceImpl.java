@@ -140,9 +140,6 @@ public class TestServiceImpl {
     public void testDeleteBoard(){
         Assert.assertThat(boardService,IsNull.notNullValue());
 
-        boolean result = boardService.deleteBoard(11L);
-
-        Assert.assertThat(result,Is.is(true));
     }
 
 //    @Test

@@ -4,7 +4,9 @@ import me.soomin.board.domain.BoardInfoVO;
 import me.soomin.board.domain.dtd.BoardModifyRequest;
 import me.soomin.board.domain.dtd.BoardRegisterRequest;
 import me.soomin.board.domain.pagination.Criteria;
+import org.springframework.validation.Errors;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface BoardService {
@@ -29,7 +31,7 @@ public interface BoardService {
 
     public boolean updateBoard(BoardModifyRequest boardModifyRequest);
 
-    public boolean deleteBoard(Long boardNo);
+    public boolean deleteBoard(Long boardNo, HttpSession session, Errors errors);
 
     public boolean updateReadCount(Long boardNo);
 

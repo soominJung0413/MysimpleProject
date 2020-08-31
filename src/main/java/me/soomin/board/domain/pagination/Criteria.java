@@ -3,6 +3,7 @@ package me.soomin.board.domain.pagination;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @ToString
 @Getter
@@ -13,6 +14,10 @@ public class Criteria {
 
     private int amount;
 
+    private String type;
+
+    private String content;
+
     public Criteria() {
         this(1,20);
     }
@@ -20,5 +25,14 @@ public class Criteria {
     public Criteria(int pageNum, int amount) {
         this.pageNum = pageNum;
         this.amount = amount;
+    }
+
+    public String getQueryString(){
+        UriComponentsBuilder builder = UriComponentsBuilder.fromPath("").queryParam("pageNum",pageNum)
+                .queryParam("amount",amount)
+                .queryParam("type", type)
+                .queryParam("content", content);
+
+        return builder.toUriString();
     }
 }

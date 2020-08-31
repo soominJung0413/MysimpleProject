@@ -6,7 +6,7 @@ $(function(){
         console.log(boardNo.html());
 
         var readBoardForm = $('#readBoardForm');
-        readBoardForm.attr("action", '/board/'+boardUrl+'/read');
+        readBoardForm.attr("action", '/board/read/'+boardUrl);
         readBoardForm.submit();
     });
     $('.page-item').on('click',function (event) {

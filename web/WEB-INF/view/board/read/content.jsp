@@ -9,6 +9,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -30,6 +31,16 @@
     <%@include file="/WEB-INF/includes/navar.jsp" %>
 
     <div class="row">
+
+        <%--delete Modal--%>
+        <%@include file="/WEB-INF/includes/deleteModal.jsp"%>
+
+        <%--@elvariable id="criteria" type="me.soomin.board.domain.pagination.Criteria"--%>
+        <form:form id="contentPageDataForm" modelAttribute="criteria">
+            <form:hidden path="amount"/>
+            <form:hidden path="pageNum"/>
+        </form:form>
+
         <%--Input Body Content--%>
         <div class="col-md-8 blog-main">
 

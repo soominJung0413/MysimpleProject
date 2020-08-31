@@ -17,7 +17,7 @@
             <c:if test="${empty sessionScope.userInfo}">
             <a class="p-2 text-dark" href="${context}/login"><spring:message code="naver.login" /></a>
             </c:if>
-            <a class="p-2 text-dark" href="${context}/board/get"><spring:message code="navar.board" /></a>
+            <a id="navarListGet" class="p-2 text-dark" href="${context}/board/get"><spring:message code="navar.board" /></a>
             <c:if test="${not empty sessionScope.userInfo}">
             <!-- Small button groups (default and split) -->
             <div class="btn-group">
