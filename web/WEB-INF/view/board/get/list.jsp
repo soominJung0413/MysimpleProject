@@ -62,6 +62,14 @@
                     $('#myRegisterModal').find('p').empty();
                     $('#myRegisterModal').find('p').append(text);
                     $('#myRegisterModal').modal('show');
+                }else if(RegisterResult.startsWith("Modify")){
+                    $('#myRegisterModal').find('p').html(' <spring:message code="testModify.body" > <spring:argument value="${requestScope.Success}" />  </spring:message>');
+                    var text = $('#myRegisterModal').find('p').html();
+                    text = text.replace("Modify","");
+                    console.log(text)
+                    $('#myRegisterModal').find('p').empty();
+                    $('#myRegisterModal').find('p').append(text);
+                    $('#myRegisterModal').modal('show');
                 }
             }
 
@@ -108,6 +116,26 @@
             </c:forEach>
             </tbody>
         </table>
+                <!-- Search Form -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form:form modelAttribute="criteria" cssClass="d-flex justify-content-center" method="get" action="/board/get" >
+                            <form:select path="type" cssClass="custom-select custom-select-sm">
+                                <form:option value="N"><spring:message code="list.select.none" /></form:option>
+                                <form:option value="T" ><spring:message code="list.select.title"/></form:option>
+                                <form:option value="C" ><spring:message code="list.select.content"/></form:option>
+                                <form:option value="W" ><spring:message code="list.select.writer"/></form:option>
+                                <form:option value="G" ><spring:message code="list.select.category"/></form:option>
+                                <form:option value="TC" ><spring:message code="list.select.titleContent"/></form:option>
+                                <form:option value="TW" ><spring:message code="list.select.titleWriter"/></form:option>
+                                <form:option value="TWC" ><spring:message code="list.select.titleWriterContent"/></form:option>
+                            </form:select>
+                            <form:input cssClass="form-control form-control-sm" path="keyword"/>
+                            <input type="submit" class="btn btn-sm btn-outline-dark"
+                                   value="<spring:message code="list.select.submit" />">
+                        </form:form>
+                    </div>
+                </div>
                 <%--pagenation--%>
                 <%@include file="/WEB-INF/includes/pagenation.jsp"%>
                 <%--end pagenation--%>

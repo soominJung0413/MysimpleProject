@@ -37,6 +37,8 @@
 
         <%--@elvariable id="criteria" type="me.soomin.board.domain.pagination.Criteria"--%>
         <form:form id="contentPageDataForm" modelAttribute="criteria">
+            <form:hidden path="type"/>
+            <form:hidden path="keyword"/>
             <form:hidden path="amount"/>
             <form:hidden path="pageNum"/>
         </form:form>
@@ -47,6 +49,7 @@
             <div class="blog-post">
                 <div class="row ml-2">
                 <div class="col-sm">
+                    <input type="hidden" name="boardNo" value="${readBoardContent.boardNo}">
                 <h2 class="blog-post-title">${readBoardContent.boardTitle}</h2>
                 </div>
                 <div class="col-sm-2 justify-content-end" id="modAndRem">

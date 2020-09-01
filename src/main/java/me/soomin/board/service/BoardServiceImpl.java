@@ -90,21 +90,18 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     @Transactional(rollbackFor = {SQLException.class})
-    public boolean deleteBoard(Long boardNo, HttpSession session, Errors errors)
+    public boolean deleteBoard(Long boardNo, HttpSession session)
     {
         BoardInfoVO boardInfoVO = boardMapper.get(boardNo);
         if(boardInfoVO == null){
-            errors.reject("NotExistPost");
             return false;
         }
         try{
            UserInfoVO userInfoVO= (UserInfoVO)session.getAttribute("userInfo");
             if( ! (boardInfoVO.getUserId().equals(userInfoVO.getUserId())) ){
-                errors.reject("NotMatchingId");
                 return false;
             }
         }catch(NullPointerException e){
-            errors.reject("NoSessionUserInfo");
             return false;
         }
         return 1 == boardMapper.delete(boardNo);

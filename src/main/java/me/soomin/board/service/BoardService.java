@@ -31,7 +31,7 @@ public interface BoardService {
 
     public boolean updateBoard(BoardModifyRequest boardModifyRequest);
 
-    public boolean deleteBoard(Long boardNo, HttpSession session, Errors errors);
+    public boolean deleteBoard(Long boardNo, HttpSession session);
 
     public boolean updateReadCount(Long boardNo);
 

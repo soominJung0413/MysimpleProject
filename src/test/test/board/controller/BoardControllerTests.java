@@ -39,6 +39,13 @@ public class BoardControllerTests {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
+//   @Test
+   public void testBoardModify() throws Exception {
+        log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/modify")
+        .param("amount","20").param("pageNum","1"))
+        .andReturn().getModelAndView().getViewName());
+   }
+
 //    @Test
     public void testExistsMockMvc(){
         Assert.assertThat(mockMvc, IsNull.notNullValue());

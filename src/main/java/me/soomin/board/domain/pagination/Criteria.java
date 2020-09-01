@@ -16,7 +16,7 @@ public class Criteria {
 
     private String type;
 
-    private String content;
+    private String keyword;
 
     public Criteria() {
         this(1,20);
@@ -27,11 +27,15 @@ public class Criteria {
         this.amount = amount;
     }
 
+    public String[] getTypeArr() {
+        return type == null ? new String[] {} : type.split("");
+    }
+
     public String getQueryString(){
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("").queryParam("pageNum",pageNum)
                 .queryParam("amount",amount)
                 .queryParam("type", type)
-                .queryParam("content", content);
+                .queryParam("keyword", keyword);
 
         return builder.toUriString();
     }

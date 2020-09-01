@@ -7,6 +7,15 @@ $(function(){
 
         var readBoardForm = $('#readBoardForm');
         readBoardForm.attr("action", '/board/read/'+boardUrl);
+            console.log(!($('#type').val() == 'N'));
+            if(!($('#type').val() == 'N')){
+                var type = $("<input type='hidden' name='type' />");
+                type.attr("value",$('#type').val());
+                var keyword = $("<input type='hidden' name='keyword' />");
+                keyword.attr("value",$('#keyword').val());
+                readBoardForm.append(type);
+                readBoardForm.append(keyword);
+            }
         readBoardForm.submit();
     });
     $('.page-item').on('click',function (event) {
@@ -16,6 +25,14 @@ $(function(){
         var readBoardForm = $('#readBoardForm');
         readBoardForm.attr('action','/board/get');
         readBoardForm.find('#pageNum').val(pageNumber);
+        if(!($('#type').val() == 'N')){
+            var type = $("<input type='hidden' name='type' />");
+            type.attr("value",$('#type').val());
+            var keyword = $("<input type='hidden' name='keyword' />");
+            keyword.attr("value",$('#keyword').val());
+            readBoardForm.append(type);
+            readBoardForm.append(keyword);
+        }
         readBoardForm.submit();
     })
 });

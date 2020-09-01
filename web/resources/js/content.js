@@ -4,6 +4,10 @@ $(function(){
 
     mod.on('click',function(){/*수정폼 제공*/
         console.log("수정폼 제공");
+        var pageInfo = $('#contentPageDataForm').serialize();
+        console.log(pageInfo);
+        var boardNo = $('input:hidden[name=boardNo]').val();
+        window.location.href="/board/modify/"+boardNo+"?"+pageInfo;
     });
 
     rem.on('click',function(){/*삭제 폼 제공*/
@@ -35,13 +39,14 @@ $(function(){
         var requestData = JSON.stringify(requestObject);
         console.log(requestData);
        $.ajax({
-           type:"post",
-           url:"/board/delete.json",
+           type:"delete",
+           url:"/board/delete",
            contentType:'application/json;charset=UTF-8',
            data:requestData,
            dataType:"json"
        }).done(function (data) {
            var pageInfo = $('#contentPageDataForm').serialize();
+           console.log(data);
            window.location.replace("/board/get?"+pageInfo);
            alert('삭제가 완료되었습니다.');
        }).fail(function (data) {

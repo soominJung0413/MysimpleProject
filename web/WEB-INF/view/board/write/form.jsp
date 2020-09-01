@@ -47,10 +47,10 @@
             <div class="col-md-8 blog-main">
                 <div class="blog-post">
             <form:form method="post"
-                                   action="${context}/board/${sessionScope.userInfo.userId}/write" modelAttribute="boardRegisterRequest">
+                                   action="${context}/board/write/${sessionScope.userInfo.userId}" modelAttribute="boardRegisterRequest">
                 <input type="hidden" value="${sessionScope.userInfo.userId}" />
-                    <form:hidden path="criteria.amount"/>
-                    <form:hidden path="criteria.pageNum"/>
+                    <form:hidden path="amount"/>
+                    <form:hidden path="pageNum"/>
                             <form:select path="boardCategory" cssClass="custom-select custom-select-sm" cssStyle="width: 20%">
                                 <form:option value="NONE"/>
                             </form:select>

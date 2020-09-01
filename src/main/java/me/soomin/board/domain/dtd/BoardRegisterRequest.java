@@ -8,9 +8,7 @@ import java.util.Date;
 
 //DTD
 @Data
-public class BoardRegisterRequest {
-
-    private Criteria criteria;
+public class BoardRegisterRequest extends Criteria{
 
     private Long boardNo;
     @NotBlank

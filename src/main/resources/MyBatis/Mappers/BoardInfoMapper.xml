@@ -31,9 +31,40 @@
         <parameter property="boardContent" javaType="java.lang.String"/>
         <parameter property="userId" javaType="java.lang.String"/>
     </parameterMap>
+
+    <!--PageNationSql-->
+    <sql id="criteria">
+        <trim prefix="(" suffix=") AND"  prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString() ">
+                            BOARDTITLE LIKE '%'||#{keyword}||'%'
+                        </when>
+                        <when test="type == 'G'.toString() ">
+                            BOARDCATEGORY LIKE '%'||#{keyword}||'%'
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            BOARDCONTENT LIKE '%'||#{keyword}||'%'
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            USERID LIKE '%'||#{keyword}||'%'
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    </sql>
+
     <!--GET TOTAL COUNT-->
     <select id="getTotalCount" resultType="java.lang.Integer" parameterType="me.soomin.board.domain.pagination.Criteria">
-        SELECT COUNT(*) FROM BOARDINFO
+    <![CDATA[
+        SELECT COUNT(*) FROM BOARDINFO WHERE
+    ]]>
+         <include refid="criteria" />
+        <![CDATA[
+        BOARDNO >0
+        ]]>
     </select>
 
     <!--Pagination-->
@@ -42,7 +73,13 @@
         SELECT  BOARDNO,BOARDTITLE,BOARDCATEGORY,BOARDCONTENT, BOARDREGDATE, BOARDUPDATEDATE, USERID, READCOUNT,LIKECOUNT FROM
             (SELECT /*+ INDEX_DESC(BOARDINFO SYS_C007306)*/
                  ROWNUM rn, BOARDNO,BOARDTITLE,BOARDCATEGORY,BOARDCONTENT, BOARDREGDATE, BOARDUPDATEDATE, USERID, READCOUNT,LIKECOUNT from boardinfo
-             WHERE ROWNUM <= #{amount} * #{pageNum})
+             WHERE
+       ]]>
+           <include refid="criteria" />
+        <![CDATA[
+                   ROWNUM <= #{amount} * #{pageNum}
+
+                )
         WHERE rn > #{amount} * (#{pageNum} - 1)
         ]]>
     </select>
