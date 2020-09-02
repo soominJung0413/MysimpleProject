@@ -1,6 +1,7 @@
 package me.soomin.comment.domain;
 
 import lombok.Data;
+import me.soomin.board.domain.pagination.Criteria;
 
 import java.util.Date;
 

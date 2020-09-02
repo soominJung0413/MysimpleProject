@@ -2,6 +2,7 @@ package config;
 
 import config.mvc.SpringMvcConfig;
 import me.soomin.board.controller.BoardController;
+import me.soomin.comment.controller.CommentController;
 import me.soomin.user.controller.UserController;
 import me.soomin.user.interceptor.LoginPageInterceptor;
 import me.soomin.user.service.UserService;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackageClasses = {UserController.class, BoardController.class})
+@ComponentScan(basePackageClasses = {UserController.class, BoardController.class, CommentController.class})
 @Import({SpringMvcConfig.class})
 public class WebMvcConfig implements WebMvcConfigurer {
 

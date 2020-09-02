@@ -13,9 +13,18 @@
         <result column="CONTENT" property="content" javaType="java.lang.String" />
     </resultMap>
 
+    <parameterMap id="commentVo" type="me.soomin.comment.domain.CommentVO">
+        <parameter property="commentNo" javaType="java.lang.Long" />
+        <parameter property="boardNo" javaType="java.lang.Long" />
+        <parameter property="userId" javaType="java.lang.String" />
+        <parameter property="regdate" javaType="java.util.Date" />
+        <parameter property="updateDate" javaType="java.util.Date" />
+        <parameter property="content" javaType="java.lang.String" />
+    </parameterMap>
+
     <select id="getList" resultMap="commentVo">
         <![CDATA[
-        SELECT * FROM COMMENTINFO
+        SELECT * FROM COMMENTINFO WHERE BOARDNO = #{boardNo}
         ]]>
     </select>
 
@@ -23,4 +32,16 @@
         SELECT * FROM COMMENTINFO WHERE COMMENTNO = #{arg0}
     </select>
 
+    <insert id="insert" parameterMap="commentVo">
+        INSERT INTO COMMENTINFO (COMMENTNO, BOARDNO, USERID, CONTENT)
+        VALUES (SEQ_COMMENTINFO.nextval, #{boardNo}, #{userId}, #{content})
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM COMMENTINFO WHERE COMMENTNO = #{commentNo}
+    </delete>
+
+    <update id="update" parameterMap="commentVo">
+        UPDATE COMMENTINFO SET CONTENT = #{content}, UPDATEDATE = SYSDATE WHERE COMMENTNO = #{commentNo}
+    </update>
 </mapper>

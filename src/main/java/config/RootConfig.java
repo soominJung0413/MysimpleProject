@@ -2,6 +2,7 @@ package config;
 
 import config.mybatis.MyBatisConfig;
 import me.soomin.board.service.BoardService;
+import me.soomin.comment.service.CommentService;
 import me.soomin.user.service.UserService;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -10,7 +11,7 @@ import org.springframework.core.io.ClassPathResource;
 
 @Configuration
 @Import({DbcpConfig.class, MyBatisConfig.class})
-@ComponentScan(basePackageClasses = {UserService.class, BoardService.class})
+@ComponentScan(basePackageClasses = {UserService.class, BoardService.class, CommentService.class})
 public class RootConfig {
     @Bean
     public static PropertySourcesPlaceholderConfigurer configurer(){
