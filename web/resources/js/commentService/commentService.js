@@ -20,6 +20,33 @@ var commentService = (function () {
         });
     }
 
+    /**
+     * Process Comment Register
+     * @param reply : {{userId: *, content: *, boardNo: *}} , userId , content
+     * @param callback : success callback
+     * @param error : error callback
+     */
+    function register(reply,callback,error) {
+        console.log(reply);
+        $.ajax({
+            type:"post",
+            url:"/replies/new",
+            data:JSON.stringify(reply),
+            contentType:"application/json; charset=utf-8",
+            success:function (result,status,xhr) {
+                if(callback){
+                    callback(result);
+                }
+            },
+            error:function (status,xhr,err) {
+                if(error){
+                    error(err);
+                }
+            }
+        });
+
+    }
+
 
 
 
@@ -55,6 +82,7 @@ var commentService = (function () {
     
     return {
         getList:getList,
-        displayTime:displayTime
+        displayTime:displayTime,
+        register:register
     };
 })();

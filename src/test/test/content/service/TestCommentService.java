@@ -27,7 +27,7 @@ public class TestCommentService {
     @Autowired
     private CommentService service;
 
-//    @Test
+    @Test
     public void testReadListWithPaging(){
         CommentPageDTO dto = service.readListWithPaging(32782l,new Criteria(1,10));
 

@@ -53,4 +53,7 @@ $(function(){
            console.log(data);
        });
     });
+    
+    /*댓글 작성*/
+
 });

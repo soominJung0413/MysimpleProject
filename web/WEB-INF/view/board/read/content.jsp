@@ -40,10 +40,32 @@
                 showList(pageNum,bnoValue,userId);
             });
 
-            /*modal control test*/
+            /*modal register click control*/
                 $("#cont").on("click",function () {
+                    $("button[id != 'commentCloseBtn']").hide();
+                    $("#commentRegBtn").show();
                     $("#myCommentModal").modal('show');
                 });
+                $("#commentRegBtn").on("click",function () {
+                    var boardNo = $("input:hidden[name='boardNo']").val();
+                    var userId = $("input:hidden[name='userId']").val();
+                    var content = $("textarea[id='myCommentModalTextArea']").val();
+                    var reply = {
+                            boardNo: boardNo,
+                            userId: userId,
+                            content: content
+                                };
+                    commentService.register(reply,function(result){
+                        $("textarea[id='myCommentModalTextArea']").val("")
+                        $("#myCommentModal").modal('hide');
+                        alert(result);
+                        showList(-1,boardNo,userId);
+                    },function (err) {
+                        alert(err);
+                    });
+                });
+
+
         });
     </script>
 

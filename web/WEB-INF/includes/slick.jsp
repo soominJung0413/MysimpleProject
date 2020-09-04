@@ -30,11 +30,11 @@
                     <br>
                 </p>
             </div>
-            <div onclick="window.open('https://okky.kr/article/307828')" style="cursor: pointer">
-                <img id="item2" src="/resources/img/okky.png" >
+            <div onclick="window.open('https://www.inflearn.com/')" style="cursor: pointer">
+                <img id="item2" src="/resources/img/inflean.png" >
                 </img>
                 <p id="itemPara2">
-                    Okky MyBatis Cache...!
+                    Inflean
                     (❁´◡`❁)
                 </p>
             </div>

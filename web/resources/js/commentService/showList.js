@@ -4,10 +4,10 @@
  * @param bno boardNo
  */
 function showList(pageNum,bno,userId){
-    console.log("showList : "+pageNum+" / "+userId);
+    console.log("showList method : "+pageNum+" / "+userId);
     commentService.getList({bno:bno,pageNum:pageNum||1},function (count,list) {
         if(pageNum == -1){
-            showList(Math.ceil(count/10.0));
+            showList(Math.ceil(count/10.0),bno,userId);
             return;
         }
         var str = "";

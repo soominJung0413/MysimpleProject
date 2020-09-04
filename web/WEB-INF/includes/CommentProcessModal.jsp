@@ -12,22 +12,32 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    <spring:message code="test.delete.title" /><%--삭제 제목 안내--%>
+                    <spring:message code="test.modify.title" /><%--수정 제목--%>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <p class="mt-5 ml-md-2">
-                <spring:message code="test.delete.body" />
-            </p>
-            <div class="modal-body" id="myDeleteModalBody" >
 
+            <div class="modal-body" id="myCommentModalBody" >
+                <%--인풋 작성 및 필요 내용 기입--%>
+                    <input type="hidden" name="boardNo" value="${readBoardContent.boardNo}">
+                    <input type="hidden" name="commentNo" value="">
+                    <input type="hidden" name="userId" value="${sessionScope.userInfo.userId}">
+                    <textarea maxlength="111" id="myCommentModalTextArea" name="content" cols="63" rows="4" ></textarea>
             </div>
             <div class="modal-footer">
-                <input class="btn btn-light" type="submit" value="<spring:message code="test.delete.submit" />"/>
-                <button type="button" class="btn btn-light" data-dismiss="modal">
-                    <spring:message code="test.close"  />
+                <button id="commentRegBtn" type="button" class="btn btn-outline-primary" >
+                    <spring:message code="test.modify.register"  />
+                </button>
+                <button id="commentDelBtn" type="button" class="btn btn-outline-warning" >
+                    <spring:message code="test.modify.delete"  />
+                </button>
+                <button id="commentModBtn" type="button" class="btn btn-outline-danger" >
+                    <spring:message code="test.modify.modify"  />
+                </button>
+                <button id="commentCloseBtn" type="button" class="btn btn-light" data-dismiss="modal">
+                    <spring:message code="test.modify.close"  />
                 </button>
             </div>
         </div>

@@ -36,3 +36,12 @@
     font-weight: bold;
 }
 
+/*myCommentModalTextArea*/
+#myCommentModalTextArea{
+    max-width: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    resize: none;
+    outline: none;
+}
+
