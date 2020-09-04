@@ -3,6 +3,7 @@ package me.soomin.comment.controller;
 
 import lombok.extern.log4j.Log4j;
 import me.soomin.board.domain.pagination.Criteria;
+import me.soomin.comment.domain.CommentPageDTO;
 import me.soomin.comment.domain.CommentVO;
 import me.soomin.comment.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequestMapping("/replies")
@@ -22,13 +22,12 @@ public class CommentController {
 
     @GetMapping(value = "/boardNo/page/{boardNo}/{page}",produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
-    public ResponseEntity<List<CommentVO>> provideCommentList(@PathVariable("boardNo") Long boardNo, @PathVariable("page") int page){
+    public ResponseEntity<CommentPageDTO> provideCommentList(@PathVariable("boardNo") Long boardNo, @PathVariable("page") int page){
         log.info("CommentController = CommentList");
         Criteria cri = new Criteria(page,10);
         log.info(cri);
-        List<CommentVO> list =  service.readList(boardNo,cri);
-
-        return ResponseEntity.ok(list);
+        CommentPageDTO dto =  service.readListWithPaging(boardNo,cri);
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping(value = "/commentNo/{commentNo}",produces = MediaType.APPLICATION_JSON_VALUE)

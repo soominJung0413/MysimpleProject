@@ -1,3 +1,5 @@
+package content.mybatis;
+
 import config.ApplicationConfig;
 import lombok.extern.log4j.Log4j;
 import me.soomin.board.domain.pagination.Criteria;
@@ -20,11 +22,7 @@ public class CommentMapperTests {
     @Autowired
     private CommentMapper commentMapper;
 
-//   @Test
-    public void isExists(){
-        Assert.assertThat(commentMapper, IsNull.notNullValue());
-        log.info(commentMapper.getList(32782L,new Criteria()));
-    }
+
 
     @Test
     public void testGet(){

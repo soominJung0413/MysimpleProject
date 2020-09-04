@@ -3,9 +3,9 @@ package exam;
 
 import org.junit.Test;
 
-import java.sql.PreparedStatement;
-import java.time.LocalDateTime;
+import java.io.*;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class exam {
 
@@ -55,6 +55,31 @@ public class exam {
     }
 
     @Test
-    public void testCalendar(){
+    public void testCalendar() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder builder = new StringBuilder();
+
+        StringTokenizer tokenizer = new StringTokenizer("10 5");
+        int count = Integer.valueOf(tokenizer.nextToken());
+        int num = Integer.valueOf(tokenizer.nextToken());
+
+        System.out.println(count +" / "+num);
+
+        tokenizer = new StringTokenizer("1 10 4 9 2 3 8 5 7 6");
+
+        for(int i=0; i<count; i++){
+
+            int intNum = Integer.valueOf(tokenizer.nextToken());
+            if(intNum < num){
+                if(i != count-1){
+                    builder.append(intNum +" ");
+                }else{
+                    builder.append(intNum);
+                }
+            }
+        }
+        writer.write(builder.toString());
+        writer.flush();
     }
 }

@@ -15,6 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ApplicationConfig.class})
 @WebAppConfiguration
@@ -25,16 +27,23 @@ public class MybatisTests {
     private CommentMapper mapper;
 
 //    @Test
+    public void testCommentCount(){
+        int count = mapper.getCountComment(32782l);
+        log.info(count);
+
+    }
+//    @Test
+    public void testGetListPaging(){
+        List<CommentVO> list = mapper.getListWithPaging(32782l,new Criteria(1,10));
+
+        list.forEach(vo -> log.info(vo));
+    }
+
+//    @Test
     public void testExist(){
         Assert.assertThat(mapper, IsNull.notNullValue());
     }
 
-//    @Test
-    public void getListTest(){
-        Assert.assertThat(mapper, IsNull.notNullValue());
-
-        mapper.getList(32782L,new Criteria()).forEach(vo -> log.info(vo));
-    }
 
 //    @Test
     public void getTest(){

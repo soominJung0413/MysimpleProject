@@ -15,8 +15,24 @@
     text-decoration: underline;
 }
 #mod:hover{
+    cursor: pointer;
     font-weight: bold;
 }
 #rem:hover{
+    cursor: pointer;
     font-weight: bold;
 }
+#cont:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+#contMod:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#contDel:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+

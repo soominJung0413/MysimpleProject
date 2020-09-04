@@ -1,14 +1,13 @@
 package me.soomin.comment.service;
 
 import me.soomin.board.domain.pagination.Criteria;
+import me.soomin.comment.domain.CommentPageDTO;
 import me.soomin.comment.domain.CommentVO;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 public interface CommentService {
 
-    public List<CommentVO> readList(Long boardNo, Criteria cri);
+    public CommentPageDTO readListWithPaging(Long boardNo, Criteria cri);
 
     public CommentVO read(Long commentNo);
 

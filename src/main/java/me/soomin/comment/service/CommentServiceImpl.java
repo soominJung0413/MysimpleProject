@@ -2,6 +2,7 @@ package me.soomin.comment.service;
 
 import lombok.extern.log4j.Log4j;
 import me.soomin.board.domain.pagination.Criteria;
+import me.soomin.comment.domain.CommentPageDTO;
 import me.soomin.comment.domain.CommentVO;
 import me.soomin.comment.persistence.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ public class CommentServiceImpl implements CommentService{
     @Autowired
     private CommentMapper mapper;
 
+
     @Override
-    public List<CommentVO> readList(Long boardNo, Criteria cri) {
-        log.info("CommentService - readList .....");
-        return mapper.getList(boardNo,cri);
+    public CommentPageDTO readListWithPaging(Long boardNo, Criteria cri) {
+        return  new CommentPageDTO(mapper.getListWithPaging(boardNo,cri),mapper.getCountComment(boardNo));
     }
 
     @Override

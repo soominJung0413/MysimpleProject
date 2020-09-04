@@ -3,6 +3,7 @@ package content.service;
 import config.ApplicationConfig;
 import lombok.extern.log4j.Log4j;
 import me.soomin.board.domain.pagination.Criteria;
+import me.soomin.comment.domain.CommentPageDTO;
 import me.soomin.comment.domain.CommentVO;
 import me.soomin.comment.service.CommentService;
 import org.hamcrest.Matchers;
@@ -27,18 +28,19 @@ public class TestCommentService {
     private CommentService service;
 
 //    @Test
+    public void testReadListWithPaging(){
+        CommentPageDTO dto = service.readListWithPaging(32782l,new Criteria(1,10));
+
+        log.info(dto.getCount());
+        dto.getList().forEach(vo -> log.info(vo));
+    }
+
+//    @Test
     public void testExist(){
         Assert.assertThat(service, IsNull.notNullValue());
     }
 
-//    @Test
-    public void testReadList(){
-        Assert.assertThat(service, IsNull.notNullValue());
 
-        List<CommentVO> list = service.readList(32782L,new Criteria());
-
-        Assert.assertThat(list, Matchers.notNullValue());
-    }
 
 //    @Test
     public void testRead(){

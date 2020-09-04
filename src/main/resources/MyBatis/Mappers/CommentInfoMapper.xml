@@ -22,9 +22,21 @@
         <parameter property="content" javaType="java.lang.String" />
     </parameterMap>
 
-    <select id="getList" resultMap="commentVo">
+    <select id="getListWithPaging" resultMap="commentVo">
         <![CDATA[
-        SELECT * FROM COMMENTINFO WHERE BOARDNO = #{boardNo}
+        SELECT COMMENTNO, BOARDNO, USERID, REGDATE, UPDATEDATE, CONTENT FROM
+            (SELECT /*+INDEX(COMMENTINFO IDX_COMMENT)*/
+                 ROWNUM RN, COMMENTNO, BOARDNO, USERID, REGDATE, UPDATEDATE,CONTENT FROM COMMENTINFO
+             WHERE ROWNUM <= #{cri.pageNum} * #{cri.amount}
+               AND BOARDNO = #{boardNo}
+               AND COMMENTNO > 0)
+        WHERE RN > (#{cri.pageNum} -1) * #{cri.amount}
+        ]]>
+    </select>
+
+    <select id="getCountComment" resultType="java.lang.Integer">
+        <![CDATA[
+        SELECT COUNT(COMMENTNO) FROM COMMENTINFO WHERE BOARDNO = #{boardNo}
         ]]>
     </select>
 

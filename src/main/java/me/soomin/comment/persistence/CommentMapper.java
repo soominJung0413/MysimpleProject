@@ -9,7 +9,9 @@ import java.util.List;
 
 public interface CommentMapper {
 
-    public List<CommentVO> getList(@Param("boardNo") Long boardNo, @Param("cri")Criteria cri);
+    public List<CommentVO> getListWithPaging(@Param("boardNo") Long boardNo, @Param("cri")Criteria cri);
+
+    public int getCountComment(@Param("boardNo") Long boardNo);
 
     public CommentVO get(Long commentNo);
 

@@ -23,9 +23,34 @@
     <%--content.jsp css--%>
     <link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/content.css'>
     <%--content.js --%>
-    <script src="/resources/js/content.js" />
+    <script src="/resources/js/content.js" ></script>
+    <script src="/resources/js/commentService/commentService.js"></script>
+    <script src="/resources/js/commentService/showList.js"></script>
+    <script>
+        $(function(){
+            /*boardNo */
+            var bnoValue = "<c:out value='${readBoardContent.boardNo}' />";
+            /*session userId*/
+            var userId = "<c:out value='${sessionScope.userInfo.userId}'/>";
+            showList(1,bnoValue,userId);
+            /*pageNationClick Event*/
+            $("#commentPagination").on("click","li a",function(e) {
+                e.preventDefault();
+                var pageNum = $(this).attr("href");
+                showList(pageNum,bnoValue,userId);
+            });
+
+            /*modal control test*/
+                $("#cont").on("click",function () {
+                    $("#myCommentModal").modal('show');
+                });
+        });
+    </script>
+
 </head>
 <body>
+
+<%@include file="/WEB-INF/includes/CommentProcessModal.jsp"%>
 
 <div class="container" role="main">
     <%@include file="/WEB-INF/includes/navar.jsp" %>
@@ -62,6 +87,11 @@
                     <c:if test="${not empty sessionScope.userInfo and sessionScope.userInfo.userId eq readBoardContent.userId}">
                         <spring:message code="read.remove"/>
                     </c:if>
+                    </sup>
+                    <sup id="cont">
+                        <c:if test="${not empty sessionScope.userInfo}">
+                            <spring:message code="read.content"/>
+                        </c:if>
                     </sup>
                 </div>
                 </div>
@@ -111,8 +141,14 @@
                 <%--end likes button--%>
                 <hr>
                 <%--comments--%>
-                <p class="blog-post-meta"><spring:message code="read.comment"/></p>
+                <ul class="commentUL list-unstyled">
+                </ul>
                 <%--end comments--%>
+                <%--comments pagination--%>
+                <div id="commentPagination" class="row justify-content-center">
+
+                </div>
+                <%--end comments pagination--%>
                 <hr>
             </div>
             <%--end Input Body Content--%>
