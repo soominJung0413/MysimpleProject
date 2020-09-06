@@ -7,20 +7,14 @@
         <parameter property="boardNo" javaType="java.lang.Long" />
         <parameter property="userNo" javaType="java.lang.Long" />
     </parameterMap>
-    
-    <select id="selectLikeUserNo" parameterMap="likeCountUserVo" resultType="java.lang.Long">
-        SELECT USERNO FROM LIKECOUNTUSER WHERE BOARDNO = #{boardNo} AND USERNO = #{userNo}
-    </select>
+
 
     <insert id="insert" parameterMap="likeCountUserVo" >
         INSERT INTO LIKECOUNTUSER VALUES (#{boardNo},#{userNo})
     </insert>
 
-    <delete id="deleteFromUserNo" >
-        DELETE FROM LIKECOUNTUSER WHERE USERNO = #{userId}
+    <delete id="delete" parameterMap="likeCountUserVo" >
+        DELETE FROM LIKECOUNTUSER WHERE USERNO = #{userNo} AND BOARDNO = #{boardNo}
     </delete>
 
-    <delete id="deleteFromBoardNo" >
-        DELETE FROM LIKECOUNTUSER WHERE BOARDNO = #{boardNo}
-    </delete>
 </mapper>

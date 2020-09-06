@@ -67,12 +67,28 @@
         ]]>
     </select>
 
+    <!--LikeCount-->
+    <update id="updateLikeCount">
+        UPDATE BOARDINFO SET LIKECOUNT = LIKECOUNT + #{count} WHERE BOARDNO = #{boardNo}
+    </update>
+    <select id="selectLikeCount" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        SELECT LIKECOUNT FROM BOARDINFO WHERE BOARDNO = ${boardNo}
+    </select>
+
+    <!--ReplyCount -->
+    <update id="updateReplyCount" >
+        UPDATE BOARDINFO SET REPLYCOUNT = REPLYCOUNT + #{count} WHERE BOARDNO = #{boardNo}
+    </update>
+    <select id="selectReplyCount" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        SELECT REPLYCOUNT FROM BOARDINFO WHERE BOARDNO = ${boardNo}
+    </select>
+
     <!--Pagination-->
     <select id="getListPaging" parameterType="me.soomin.board.domain.pagination.Criteria" resultMap="boardVO">
         <![CDATA[
-        SELECT  BOARDNO,BOARDTITLE,BOARDCATEGORY,BOARDCONTENT, BOARDREGDATE, BOARDUPDATEDATE, USERID, READCOUNT,LIKECOUNT FROM
+        SELECT  BOARDNO,BOARDTITLE,BOARDCATEGORY,BOARDCONTENT, BOARDREGDATE, BOARDUPDATEDATE, USERID, READCOUNT,LIKECOUNT,REPLYCOUNT FROM
             (SELECT /*+ INDEX_DESC(BOARDINFO SYS_C007306)*/
-                 ROWNUM rn, BOARDNO,BOARDTITLE,BOARDCATEGORY,BOARDCONTENT, BOARDREGDATE, BOARDUPDATEDATE, USERID, READCOUNT,LIKECOUNT from boardinfo
+                 ROWNUM rn, BOARDNO,BOARDTITLE,BOARDCATEGORY,BOARDCONTENT, BOARDREGDATE, BOARDUPDATEDATE, USERID, READCOUNT,LIKECOUNT,REPLYCOUNT from boardinfo
              WHERE
        ]]>
            <include refid="criteria" />
@@ -137,8 +153,5 @@
     <update id="updateReadCount" parameterType="java.lang.Long" >
         UPDATE BOARDINFO SET READCOUNT = READCOUNT+1 WHERE BOARDNO=#{arg0}
     </update>
-    
-    <update id="updateLikeCount" parameterType="java.lang.Long" >
-        UPDATE BOARDINFO SET LIKECOUNT = LIKECOUNT+1 WHERE BOARDNO=#{arg0}
-    </update>
+
 </mapper>

@@ -34,6 +34,4 @@ public interface BoardService {
     public boolean deleteBoard(Long boardNo, HttpSession session);
 
     public boolean updateReadCount(Long boardNo);
-
-    public boolean updateLikeCount(Long boardNo);
 }

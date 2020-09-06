@@ -151,14 +151,5 @@ public class TestServiceImpl {
         Assert.assertThat(result, Is.is(true));
     }
 
-//    @Test
-    public void testUpdateLikeCount(){
-        Assert.assertThat(boardService,IsNull.notNullValue());
-
-        boolean result= boardService.updateLikeCount(10L);
-
-
-        Assert.assertThat(result , Is.is(true));
-    }
 
 }

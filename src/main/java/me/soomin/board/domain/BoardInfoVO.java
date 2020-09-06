@@ -18,4 +18,5 @@ public class BoardInfoVO {
     private String userId;
     private int readCount;
     private int likeCount;
+    private int replyCount;
 }

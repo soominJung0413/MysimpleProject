@@ -43,7 +43,7 @@ public class MapperTests {
         LikeCountUserVO vo = new LikeCountUserVO();
         vo.setBoardNo(32784l);
         vo.setUserNo(21l);
-        Long result = mapper.selectLikeUserNo(vo);
-        log.info(result);
+        /*Long result = mapper.selectLikeUserNo(vo);
+        log.info(result);*/
     }
 }

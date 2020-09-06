@@ -7,6 +7,7 @@ import me.soomin.board.domain.dtd.BoardRegisterRequest;
 import me.soomin.board.domain.pagination.Criteria;
 import me.soomin.board.domain.pagination.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -37,5 +38,11 @@ public interface BoardMapper {
 
     public int updateReadCount(Long boardNo);
 
-    public int updateLikeCount(Long boardNo);
+    public int updateReplyCount(@Param("boardNo") Long boardNo,@Param("count") int count);
+
+    public int selectReplyCount(Long boarNo);
+
+    public int updateLikeCount(@Param("boardNo") Long boardNo,@Param("count") int count);
+
+    public int selectLikeCount(Long boarNo);
 }

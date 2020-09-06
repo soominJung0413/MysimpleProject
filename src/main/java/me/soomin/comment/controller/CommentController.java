@@ -40,9 +40,9 @@ public class CommentController {
     produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> processRegister(@RequestBody CommentVO vo){
         log.info("CommentController = Register....");
-        boolean result = service.register(vo);
+        int result = service.register(vo);
 
-        return result == true ? ResponseEntity.ok("Success") : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return result != -1 ? ResponseEntity.ok(String.valueOf(result)) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @RequestMapping(value = "/commentNo/{commentNo}",method = {RequestMethod.PUT,RequestMethod.PATCH},
@@ -57,8 +57,8 @@ public class CommentController {
     @DeleteMapping(value = "commentNo/{commentNo}",produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> processRemove(@PathVariable("commentNo") Long commentNo){
         log.info("CommentController = Remove......");
-        boolean result = service.remove(commentNo);
+        int result = service.remove(commentNo);
 
-        return result == true ? ResponseEntity.ok("Success") : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return result != -1 ? ResponseEntity.ok(String.valueOf(result)) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

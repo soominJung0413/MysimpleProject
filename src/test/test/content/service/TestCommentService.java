@@ -58,15 +58,15 @@ public class TestCommentService {
         vo.setUserId("doli0413");
         vo.setBoardNo(32781L);
 
-        boolean result = service.register(vo);
+//        boolean result = service.register(vo);
 
-        Assert.assertThat(result,Matchers.is(true));
+//        Assert.assertThat(result,Matchers.is(true));
     }
 
 //    @Test
     public void testRemove(){
-        boolean result = service.remove(21l);
-        Assert.assertThat(result, Matchers.is(true));
+//        boolean result = service.remove(21l);
+//        Assert.assertThat(result, Matchers.is(true));
     }
 
 //    @Test

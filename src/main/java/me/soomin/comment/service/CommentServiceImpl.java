@@ -1,11 +1,15 @@
 package me.soomin.comment.service;
 
 import me.soomin.board.domain.pagination.Criteria;
+import me.soomin.board.persistence.mappers.BoardMapper;
 import me.soomin.comment.domain.CommentPageDTO;
 import me.soomin.comment.domain.CommentVO;
 import me.soomin.comment.persistence.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.SQLException;
 
 
 @Service
@@ -13,6 +17,9 @@ public class CommentServiceImpl implements CommentService{
 
     @Autowired
     private CommentMapper mapper;
+
+    @Autowired
+    private BoardMapper boardMapper;
 
 
     @Override
@@ -26,13 +33,24 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public boolean register(CommentVO vo) {
-        return 1 == mapper.insert(vo);
+    @Transactional(rollbackFor = SQLException.class)
+    public int register(CommentVO vo) {
+        boardMapper.updateReplyCount(vo.getBoardNo(),1);
+        if(1 == mapper.insert(vo)){
+            return boardMapper.selectReplyCount(vo.getBoardNo());
+        }
+        return -1;
     }
 
     @Override
-    public boolean remove(Long commentNo) {
-        return 1 == mapper.delete(commentNo);
+    @Transactional(rollbackFor = SQLException.class)
+    public int remove(Long commentNo) {
+        CommentVO vo = mapper.get(commentNo);
+        boardMapper.updateReplyCount(vo.getBoardNo(),-1);
+        if(1 == mapper.delete(commentNo)){
+            return  boardMapper.selectReplyCount(vo.getBoardNo());
+        }
+        return -1;
     }
 
     @Override

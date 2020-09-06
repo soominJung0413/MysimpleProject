@@ -107,7 +107,7 @@
             <c:forEach var="board" items="${boardInfoVO}">
             <tr class="boardListRow" >
                 <td class="boardListNo">${board.boardNo}</td>
-                <td >${board.boardTitle}</td>
+                <td >${board.boardTitle}&nbsp;&nbsp; <b>[${board.replyCount}]</b> </td>
                 <td>${board.boardCategory}</td>
                 <td>${board.readCount}</td>
                 <td>${board.userId}</td>

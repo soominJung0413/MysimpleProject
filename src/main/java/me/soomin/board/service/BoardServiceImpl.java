@@ -113,9 +113,4 @@ public class BoardServiceImpl implements BoardService{
         return 1 == boardMapper.updateReadCount(boardNo);
     }
 
-    @Override
-    @Transactional(rollbackFor = {SQLException.class})
-    public boolean updateLikeCount(Long boardNo) {
-        return 1 == boardMapper.updateLikeCount(boardNo);
-    }
 }

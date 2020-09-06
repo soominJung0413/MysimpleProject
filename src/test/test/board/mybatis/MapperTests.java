@@ -135,16 +135,5 @@ public class MapperTests {
         Assert.assertThat(readCount, Matchers.greaterThan(2));
     }
 
-//    @Test
-    public void testLikeCount(){
-        Assert.assertThat(boardMapper,IsNull.notNullValue());
-        boardMapper.updateLikeCount(4l);
-        BoardInfoVO boardInfoVO = boardMapper.get(4l);
 
-        int likeCount = boardInfoVO.getLikeCount();
-
-        log.info(likeCount);
-
-        Assert.assertThat(likeCount,Matchers.greaterThan(0));
-    }
 }

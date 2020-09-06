@@ -11,9 +11,9 @@ public interface CommentService {
 
     public CommentVO read(Long commentNo);
 
-    public boolean register(CommentVO vo);
+    public int register(CommentVO vo);
 
-    public boolean remove(@Param("commentNo") Long commentNo);
+    public int remove(@Param("commentNo") Long commentNo);
 
     public boolean modify(CommentVO vo);
 }
