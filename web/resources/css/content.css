@@ -26,12 +26,12 @@
     cursor: pointer;
     font-weight: bold;
 }
-#contMod:hover{
+.contMod:hover{
     cursor: pointer;
     font-weight: bold;
 }
 
-#contDel:hover{
+.contDel:hover{
     cursor: pointer;
     font-weight: bold;
 }

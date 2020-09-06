@@ -30,7 +30,7 @@
                     <br>
                 </p>
             </div>
-            <div onclick="window.open('https://www.inflearn.com/')" style="cursor: pointer">
+            <div onclick="window.open('https://www.inflearn.com/re=4444444444444444444444444444444')" style="cursor: pointer">
                 <img id="item2" src="/resources/img/inflean.png" >
                 </img>
                 <p id="itemPara2">

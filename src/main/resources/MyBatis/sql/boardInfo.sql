@@ -26,3 +26,10 @@ CREATE TABLE BOARDINFO(
     CREATE SEQUENCE SEQ_COMMENTINFO;
 
     CREATE INDEX IDX_COMMENT ON COMMENTINFO(BOARDNO DESC, COMMENTNO ASC);
+
+    Create table likecountuser(
+    boardNo number(10,0) CONSTRAINT fk_boardNo REFERENCES boardinfo(boardNo),
+    userNo number(10,0) CONSTRAINT fk_userNo REFERENCES userinfo(userNo)
+    );
+
+    create INDEX idx_likecountuser on likecountuser(boardNo desc, userNo asc);

@@ -30,10 +30,10 @@
                 <button id="commentRegBtn" type="button" class="btn btn-outline-primary" >
                     <spring:message code="test.modify.register"  />
                 </button>
-                <button id="commentDelBtn" type="button" class="btn btn-outline-warning" >
+                <button id="commentDelBtn" type="button" class="btn btn-outline-danger" >
                     <spring:message code="test.modify.delete"  />
                 </button>
-                <button id="commentModBtn" type="button" class="btn btn-outline-danger" >
+                <button id="commentModBtn" type="button" class="btn btn-outline-warning" >
                     <spring:message code="test.modify.modify"  />
                 </button>
                 <button id="commentCloseBtn" type="button" class="btn btn-light" data-dismiss="modal">

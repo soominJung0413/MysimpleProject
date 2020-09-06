@@ -26,10 +26,11 @@ function showList(pageNum,bno,userId){
             str += "["+list[i].commentNo+"] "+list[i].userId;
             str +="</div><div class=\"col-sm justify-content-sm-end\">"+list[i].content;
             str +="</div></div><div class=\"row mr-2\">"+commentService.displayTime(list[i].regdate);
-            console.log(userId + ", "+list[i].userId);
+            // console.log(userId + ", "+list[i].userId);
             str +="</div></li>";
             if(userId == list[i].userId){
-                str +="<col><sub id='contMod'>수정</sub>&nbsp;<sub id='contDel'>삭제</sub></col>";
+                str +="<col><sub class='contMod'>수정</sub>&nbsp;<sub class='contDel'>삭제</sub></col>";
+                str += "<input type='hidden' name='commentNo' value='"+list[i].commentNo+"' />";
             }
             str +="<hr/>";
         }

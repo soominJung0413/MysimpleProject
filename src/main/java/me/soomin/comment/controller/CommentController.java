@@ -54,7 +54,7 @@ public class CommentController {
         return result == true ? ResponseEntity.ok("Success") : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR) ;
     }
 
-    @DeleteMapping(value = "/{commentNo}",produces = MediaType.TEXT_PLAIN_VALUE)
+    @DeleteMapping(value = "commentNo/{commentNo}",produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> processRemove(@PathVariable("commentNo") Long commentNo){
         log.info("CommentController = Remove......");
         boolean result = service.remove(commentNo);

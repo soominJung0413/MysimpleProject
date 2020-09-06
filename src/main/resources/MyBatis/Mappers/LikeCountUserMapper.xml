@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.soomin.board.persistence.mappers.LikeCountUserMapper">
+    <parameterMap id="likeCountUserVo" type="me.soomin.board.domain.LikeCountUserVO">
+        <parameter property="boardNo" javaType="java.lang.Long" />
+        <parameter property="userNo" javaType="java.lang.Long" />
+    </parameterMap>
+    
+    <select id="selectLikeUserNo" parameterMap="likeCountUserVo" resultType="java.lang.Long">
+        SELECT USERNO FROM LIKECOUNTUSER WHERE BOARDNO = #{boardNo} AND USERNO = #{userNo}
+    </select>
+
+    <insert id="insert" parameterMap="likeCountUserVo" >
+        INSERT INTO LIKECOUNTUSER VALUES (#{boardNo},#{userNo})
+    </insert>
+
+    <delete id="deleteFromUserNo" >
+        DELETE FROM LIKECOUNTUSER WHERE USERNO = #{userId}
+    </delete>
+
+    <delete id="deleteFromBoardNo" >
+        DELETE FROM LIKECOUNTUSER WHERE BOARDNO = #{boardNo}
+    </delete>
+</mapper>

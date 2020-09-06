@@ -24,7 +24,8 @@ public class MyBatisConfig {
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(new ClassPathResource("MyBatis/Mappers/BoardInfoMapper.xml"),
                 new ClassPathResource("MyBatis/Mappers/CommentInfoMapper.xml"),
-                new ClassPathResource("MyBatis/Mappers/UserInfoMapper.xml"));
+                new ClassPathResource("MyBatis/Mappers/UserInfoMapper.xml"),
+                new ClassPathResource("MyBatis/Mappers/LikeCountUserMapper.xml"));
         return sqlSessionFactoryBean;
     }
 

@@ -56,7 +56,7 @@
                             content: content
                                 };
                     commentService.register(reply,function(result){
-                        $("textarea[id='myCommentModalTextArea']").val("")
+                        $("textarea[id='myCommentModalTextArea']").val("");
                         $("#myCommentModal").modal('hide');
                         alert(result);
                         showList(-1,boardNo,userId);
@@ -64,8 +64,70 @@
                         alert(err);
                     });
                 });
+            /*end modal register click control*/
 
+            /*modal modify click control*/
+            $(".commentUL.list-unstyled").on("click",".contMod",function (e) {
+                var commentNo = $(this).next().next().val();
+                var content = $(this).prev().find(".col-sm.justify-content-sm-end").html();
+                var myCommentModal = $("#myCommentModal");
+                myCommentModal.find("input:hidden[name='commentNo']").val(commentNo);
 
+                myCommentModal.find("button[id != 'commentCloseBtn']").hide();
+                myCommentModal.find("#commentModBtn").show();
+                myCommentModal.find("#myCommentModalTextArea").val(content);
+                myCommentModal.modal('show');
+            });
+            $("#commentModBtn").on("click",function (e) {
+                var commentNo = $("input:hidden[name='commentNo']").val();
+                var content = $("#myCommentModalTextArea").val();
+
+                var reply = {
+                    commentNo:commentNo,
+                    content:content
+                            };
+                console.log(reply);
+                commentService.modify(reply,function (result) {
+                    var pageNum = $(".commentUL.list-unstyled").next().find(".active").find("a").html();
+                    // console.log(pageNum);
+                    var boardNo = $("input:hidden[name='boardNo']").val();
+                    $("textarea[id='myCommentModalTextArea']").val("");
+                    $("#myCommentModal").modal('hide');
+                    alert(result);
+                    showList(pageNum,boardNo,userId);
+                },function (err) {
+                    alert(err);
+                });
+            });
+            /*end modal modify click control*/
+
+            /*delete modify click control*/
+            $(".commentUL.list-unstyled").on("click",".contDel",function (e) {
+                var commentNo = $(this).next().val();
+                var content = $(this).prev().prev().find(".col-sm.justify-content-sm-end").html();
+                // console.log(commentNo+"//"+content);
+                var myCommentModal = $("#myCommentModal");
+                myCommentModal.find("input:hidden[name='commentNo']").val(commentNo);
+
+                myCommentModal.find("button[id != 'commentCloseBtn']").hide();
+                myCommentModal.find("#commentDelBtn").show();
+                myCommentModal.find("#myCommentModalTextArea").val(content);
+                myCommentModal.find("#myCommentModalTextArea").attr("readonly","readonly");
+                myCommentModal.modal('show');
+            });
+            $("#commentDelBtn").on("click",function (e) {
+                var commentNo = $("input:hidden[name='commentNo']").val();
+                commentService.remove(commentNo,function (result) {
+                    var boardNo = $("input:hidden[name='boardNo']").val();
+                    $("textarea[id='myCommentModalTextArea']").val("");
+                    $("#myCommentModal").modal('hide');
+                    alert(result);
+                    showList(1,boardNo,userId);
+                },function (err) {
+                    alert(err);
+                });
+            });
+            /*end delete modify click control*/
         });
     </script>
 

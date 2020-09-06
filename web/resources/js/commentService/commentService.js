@@ -22,7 +22,7 @@ var commentService = (function () {
 
     /**
      * Process Comment Register
-     * @param reply : {{userId: *, content: *, boardNo: *}} , userId , content
+     * @param reply : {{userId: *, content: *, boardNo: *}} , userId , content, boardNo
      * @param callback : success callback
      * @param error : error callback
      */
@@ -79,10 +79,59 @@ var commentService = (function () {
         }
 
     }
+
+    /**
+     * Process Comment Modify
+     * @param content : {commentNo: CommentNumber,content:CommentContent}
+     * @param callback : success callback
+     * @param error : error callback
+     */
+    function modify(content, callback, error) {//콘텐트 코멘드 넘버가 필요. 코멘드 넘버는 주소, 내용은 vo의 파라미터
+        $.ajax({
+            type:"put",
+            url:"/replies/commentNo/"+content.commentNo,
+            data:JSON.stringify(content),
+            contentType:"application/json; charset=utf-8",
+            success:function (result,status,xhr) {
+                if(callback){
+                    callback(result);
+                }
+            },
+            error:function (status,xhr,err) {
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    /**
+     * Process Comment Remove
+     * @param commentNo : commentNo: CommentNumber
+     * @param callback : success callback
+     * @param error : error callback
+     */
+    function remove(commentNo,callback,error) {
+        $.ajax({
+            type:"delete",
+            url:"/replies/commentNo/"+commentNo,
+            contentType:"application/json; charset=utf-8",
+            success:function (result,status,xhr) {
+                if(callback){
+                    callback(result);
+                }
+            },
+            error:function (status,xhr,err) {
+                error(err);
+            }
+        });
+    }
     
     return {
         getList:getList,
         displayTime:displayTime,
-        register:register
+        register:register,
+        modify:modify,
+        remove:remove
     };
 })();
