@@ -26,6 +26,8 @@
     <script src="/resources/js/content.js" ></script>
     <script src="/resources/js/commentService/commentService.js"></script>
     <script src="/resources/js/commentService/showList.js"></script>
+    <script src="/resources/js/likecountService/likeCountService.js"></script>
+
     <script>
         $(function(){
             /*boardNo */
@@ -130,6 +132,48 @@
                 });
             });
             /*end delete modify click control*/
+
+            /*like count register click control*/
+            $("#likeBox").on("click","#likeBtn",function(e){
+                var boardNo = bnoValue;
+                var userNo = "<c:out value='${sessionScope.userInfo.userNo}' />";
+
+                var registerData = {boardNo:boardNo,userNo:userNo};
+
+                likeCountService.processRegister(registerData, function(result){
+                    alert("<spring:message code="test.register.like" />");
+                    $("#likeCountNum").html(result);
+                    $("#likeBtn").hide();
+                    $("#likeHeart").show();
+                    $("#likeHeader").html("<spring:message code='read.like.complete' />");
+                },function(error){});
+            });
+
+            /*like count delete click control*/
+            $("#likeBox").on("click","#likeHeart",function (e) {
+                var boardNo = bnoValue;
+                var userNo = "<c:out value='${sessionScope.userInfo.userNo}' />";
+                console.log("작동"+boardNo+" , "+userNo);
+
+                var deleteData = {boardNo:boardNo,userNo:userNo};
+
+                likeCountService.processDelete(deleteData, function(result){
+                    alert("<spring:message code="test.delete.like" />");
+                    $("#likeCountNum").html(result);
+                    $("#likeBox").find(".card-title").html();
+                    $("#likeHeart").hide();
+                    $("#likeBtn").show();
+                    $("#likeHeader").html("<spring:message code='read.like' />");
+
+                },function(error){});
+            });
+            /*end like count delete click control*/
+
+            /*like login required button*/
+            $("#likeLogin").on("click",function(e){
+                location.href="/login";
+            });
+            /*end like login required button*/
         });
     </script>
 
@@ -207,7 +251,7 @@
                             <path fill-rule="evenodd"
                                   d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                         </svg>
-                        Likes ${readBoardContent.likeCount}
+                        Likes <span id="likeCountNum">${readBoardContent.likeCount}</span>
                     </div>
                     <span id="contentInfo"><fmt:formatDate
                             value="${readBoardContent.regdate}"/> by <em>${readBoardContent.userId}</em></span>
@@ -220,12 +264,26 @@
                        <span>
                             <div id="likeBox" class="card text-center">
                               <div class="card-body">
-                                <h6 class="card-title">Like This Post's Contents.</h6>
-                                    <svg id="likeBtn" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart"
+                                  <c:if test="${not empty sessionScope.userInfo.userId}">
+                                      <h6 id="likeHeader" class="card-title"><spring:message code="read.like"/></h6>
+                                      <svg id="likeBtn" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart"
                                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                       <path fill-rule="evenodd"
                                             d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                                     </svg>
+                                  </c:if>
+                                    <c:if test="${empty sessionScope.userInfo.userId}">
+                                        <h6 class="card-title"><spring:message code="read.like.login" /></h6>
+                                        <svg id="likeLogin" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+                                          <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"/>
+                                          <path fill-rule="evenodd" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                          <path d="M8 12c4 0 5 1.755 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-.245S4 12 8 12z"/>
+                                        </svg>
+                                    </c:if>
+                                        <svg id="likeHeart" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                        </svg>
                                </div>
                             </div>
                        </span>
