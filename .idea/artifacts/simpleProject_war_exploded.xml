@@ -22,7 +22,6 @@
           <element id="library" level="project" name="Maven: org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16" />
           <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:6.0.7.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" />
-          <element id="library" level="project" name="Maven: org.jetbrains:annotations:20.0.0" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.5" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.5" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.6.6" />
@@ -39,13 +38,14 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.0.7.RELEASE" />
-          <element id="library" level="project" name="ojdbc8" />
           <element id="library" level="project" name="ojdbc81" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.2" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.2" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.2" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.13" />
           <element id="library" level="project" name="Maven: org.hamcrest:hamcrest:2.2" />
+          <element id="library" level="project" name="Maven: org.jetbrains:annotations:20.1.0" />
+          <element id="library" level="project" name="ojdbc8" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="simpleProject/web/Web" />
