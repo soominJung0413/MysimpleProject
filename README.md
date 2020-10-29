@@ -29,3 +29,33 @@
 <hr>
 
 **i18n** 
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msg1.PNG)
+
+<hr>
+
+**EventListener**
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msgEvent.PNG)
+
+<hr>
+
+**SpEL**
+
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msgSpEL.PNG)
+
+<hr>
+
+**AOP**
+
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msgaop.PNG)
+
+<hr>
+
+**CustomTag**
+
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msgi18nValidation.PNG)
+
+<hr>
+
+**Rest API**
+
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msgrest.PNG)
