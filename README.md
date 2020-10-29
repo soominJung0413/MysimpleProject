@@ -82,4 +82,7 @@
 
 ![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msgValidation.PNG)
 
+<hr>
 
+**Searching Mapper **
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/MapperSearch.PNG)
