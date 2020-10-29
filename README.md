@@ -59,3 +59,9 @@
 **Rest API**
 
 ![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msgrest.PNG)
+
+<hr>
+
+**Validation**
+
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msgValidation.PNG)
