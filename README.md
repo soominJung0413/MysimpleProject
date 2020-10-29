@@ -11,7 +11,9 @@
   
 **프레임워크 및 플러그인** 
   * Spring5(Core, Bean Validation, AOP, WebMvc, RestFul, Jdbc, Tx, SpEL, Test, CustomTag), BootStrap, Jquery, Mybatis, Ajax
-
+  
+**데이터 베이스**
+  * Oracle
 <hr>
 
 **Presiontation-Tier**
