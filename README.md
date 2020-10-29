@@ -28,6 +28,22 @@
 
 <hr>
 
+**notice board**
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msg4.png)
+
+<hr>
+
+**Validation View**
+
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msg0.PNG)
+
+<hr>
+
+**Post & Comment**
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msg3.PNG)
+
+<hr>
+
 **i18n** 
 ![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msg1.PNG)
 
@@ -65,3 +81,9 @@
 **Validation**
 
 ![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msgValidation.PNG)
+
+<hr>
+
+**Searching Mapper**
+
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/MapperSearch.PNG)
