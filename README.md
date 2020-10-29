@@ -28,6 +28,11 @@
 
 <hr>
 
+**Main View**
+![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msgmain.PNG)
+
+<hr>
+
 **notice board**
 ![](https://github.com/soominJung0413/MysimpleProject/blob/master/src/main/resources/Image/msg4.png)
 
