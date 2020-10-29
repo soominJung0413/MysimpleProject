@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.*;
 
-//DTD
+//DTO
 @Data
 public class UserRegisterRequest {
 
